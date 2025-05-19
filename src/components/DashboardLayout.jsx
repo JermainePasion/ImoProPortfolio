@@ -1,8 +1,12 @@
 import React from 'react'
+import Navbar from './Navbar'
 
-const DashboardLayout = () => {
+const DashboardLayout = ({children, activeMenu}) => {
   return (
-    <div>DashboardLayout</div>
+    <div className='flex'>
+      <Navbar activeMenu={activeMenu}/>
+        <div className='grow mx-5'>{children}</div>
+    </div>
   )
 }
 
