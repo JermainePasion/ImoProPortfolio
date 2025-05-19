@@ -1,1 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+
+@theme{
+  --font-display: "Roboto", "sans-serif";
+  --breakpoint-3xl: 1920px;
+  --color-primary: #a7c957;
+}
+
+@layer base{
+  html{
+    font-family: var(--font-display);
+  }
+
+  body{
+    overflow-x: hidden;
+  }
+
+}
