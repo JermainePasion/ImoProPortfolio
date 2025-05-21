@@ -1,8 +1,11 @@
 import React from 'react'
+import DashboardLayout from '../components/DashboardLayout'
 
 const SchoolWork = () => {
   return (
-    <div>SchoolWork</div>
+    <DashboardLayout>
+      <div>SchoolWork</div>
+    </DashboardLayout>
   )
 }
 
