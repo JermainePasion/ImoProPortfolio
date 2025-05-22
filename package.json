@@ -17,6 +17,7 @@
     "hamburger-react": "^2.5.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-lite-youtube-embed": "^2.5.1",
     "react-router-dom": "^7.6.0",
     "tailwindcss": "^4.1.6"
   },
