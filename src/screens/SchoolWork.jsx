@@ -55,14 +55,14 @@ const SchoolWork = () => {
           <div className='max-w-7xl mx-auto flex flex-col items-center'>
           <h2 className="text-2xl font-bold tracking-wide mb-2 text-white">{school02.Title}</h2>
           <div className="flex flex-wrap items-center justify-center gap-4 mb-4 text-center">
-                  <span className='text-cyan-100'>Tools:</span>
+                  <span className='text-[#d1d1d1]'>Tools:</span>
                   <div className="flex gap-2">
                     {school02.Tools.map((tool, index) => (
                       <img key={index} src={tool} alt={`Tool ${index}`} className="w-8 h-8 justify-center items-center" />
                     ))}
                   </div>
                   <p className="italic mb-0 text-white">
-                    <span className='text-cyan-100'>Role:</span> {school01.Role}
+                    <span className='text-[#d1d1d1]'>Role:</span> {school01.Role}
                   </p>
 
                   
