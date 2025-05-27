@@ -208,7 +208,7 @@ const SchoolWork = () => {
                 <div className="aspect-video w-full ">
                   <LiteYouTubeEmbed
                     id="APKZe6qrbcY"
-                    title="3DANIM | Final Project: ‘Kohi’ Commercial"
+                    title="3DANIM | Finals Project: ‘Kohi’ Commercial"
                     poster="maxresdefault"
                   />
                 </div>
