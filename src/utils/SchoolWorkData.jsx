@@ -35,12 +35,12 @@ export const SchoolData =[
         id: "05",
         Title: "IGAME | Activity: 'Critter Grocery Level' Design",
         Tools: [procreate],
-        Role: "Scriptwriter, Character Designer, Storyboard, Artist and Animator"
+        Role: "​Concept Artist, Character Designer (For Fred The Cashier), Storyboard, Environmental Designer and Artist."
     },
     {
         id: "06",
-        Title: "TWRITE | Finals Project: 'The Adventures of A Side Character!' Animatic",
+        Title: "3DANIM | Final Project: 'Kohi' Commercial",
         Tools: [procreate, blender],
-        Role: "Scriptwriter, Character Designer, Storyboard, Artist and Animator"
+        Role: "​Concept Artist, Storyboard, 3D Modeler and Animator."
     },
 ]
