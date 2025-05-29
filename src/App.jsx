@@ -10,11 +10,13 @@ import About from './screens/About'
 import GeneralWork from './screens/GeneralWork'
 import Home from './screens/Home'
 import SchoolWork from './screens/SchoolWork'
+import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
   return (
     <div>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element = {<Home/>}/>
           <Route path="/about" element = {<About/>}/>

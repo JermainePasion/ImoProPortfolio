@@ -201,7 +201,7 @@ const SchoolWork = () => {
               <h2 className="text-4xl font-bold tracking-wide mb-2 text-black " data-aos="fade-down">{school06.Title}</h2>
               </div>
           <div className="flex flex-wrap items-center justify-center gap-4 mb-4 text-center">
-                  <span className='text-[#d1d1d1]'>Tools:</span>
+                  <span className='text-[#d1d1d1]' data-aos="fade-right">Tools:</span>
                   <div className="flex gap-2" data-aos="zoom-in" >
                     {school06.Tools.map((tool, index) => (
                       <img key={index} src={tool} alt={`Tool ${index}`} className="w-8 h-8 justify-center items-center" />

@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <DashboardLayout>
     <div className="p-5 ">
-      <img class="h-auto max-w-full " src={FrontPage} alt="image description"/>
+      <img class="h-auto max-w-full mx-auto" src={FrontPage} alt="image description"/>
       
       
       {ProjectData.map((project) => (
