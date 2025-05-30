@@ -4,6 +4,9 @@ import portrait2 from "../assets/images/portrait2.jpg"
 import portrait3 from "../assets/images/portrait3.jpg"
 import portrait4 from "../assets/images/portrait4.jpg"
 
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
+
 import AOS from "aos"
 import "aos/dist/aos.css";
 import DashboardLayout from '../components/DashboardLayout';
@@ -25,23 +28,36 @@ const GeneralWork = () => {
         <hr className="my-2 border-t border-gray-300" />
 
         <div className='grid grid-cols-1 sm:grid-cols-2 justify-center items-center mx-auto gap-8 p-4 max-w-7xl'>
+          
+          <Zoom>
           <img data-aos="fade-right"
           src={portrait1}
-          className='mx-auto w-full'
+          className='mx-auto w-full cursor-zoom-in'
           />
+          </Zoom>
+
+          <Zoom>
           <img data-aos="fade-left"
           src={portrait2}
           className='mx-auto w-full'
           />
+          </Zoom>
+
+          <Zoom>
           <img data-aos="fade-right"
             src={portrait3}
             className="w-full p-5 mb-0 sm:mb-30"
           />
+          </Zoom>
+
+          <Zoom>
           <img data-aos="fade-left"
           src={portrait4}
           className='w-full p-5'
           />
+          </Zoom>
         </div>
+
       </div>
       <div className='flex flex-col md:flex-row items-center justify-center text-center gap-4 mt-25'>
               <h2 className="text-4xl  tracking-wider mb-2 text-black " >Commissioned Works</h2>
@@ -55,11 +71,13 @@ const GeneralWork = () => {
 
                 <div className='mt-10 p-5 '>
                   <div className='flex justify-center items-center mx-auto p-5'>
+                    <Zoom>
                     <img data-aos="fade-down"
                       className='w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-5xl h-auto rounded-md'
                       src={commission.ArtWork}
                       alt='Commission Artwork'
                     />
+                    </Zoom>
                   </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 items-center mt-4 justify-between w-full px-2" data-aos="fade-up">
                       <span>
@@ -100,12 +118,17 @@ const GeneralWork = () => {
 
                             </div>
                 
-                            <div className="flex flex-col items-center order-1 lg:order-1 w-full px-4 sm:px-6 lg:px-8" data-aos="fade-right">
-                              <img
-                                src={commission.ArtWork}
-                                className="w-full max-w-3xl rounded-md"
-                                alt="Commission Artwork"
-                              />
+                            <div
+                                className="flex flex-col items-center order-1 lg:order-1 w-full px-4 sm:px-6 lg:px-8"
+                                data-aos="fade-right"
+                              >
+                                <Zoom>
+                                  <img
+                                    src={commission.ArtWork}
+                                    className="w-full max-w-3xl rounded-md cursor-zoom-in"
+                                    alt="Commission Artwork"
+                                  />
+                                </Zoom>
                             </div>
                 
                             </div>
@@ -134,7 +157,9 @@ const GeneralWork = () => {
 
 
                         <div className="flex flex-col items-center order-1 lg:order-2 w-full px-4 sm:px-6 lg:px-8" data-aos="fade-left">
+                          <Zoom>
                           <img src={commission.ArtWork} className='rounded-md w-full max-w-3xl ' />
+                          </Zoom>
                         </div>
                       </div>
                       

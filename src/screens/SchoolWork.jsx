@@ -11,6 +11,8 @@ import Carousel4 from '../Carousel/Carousel4.jsx';
 import Carousel5 from '../Carousel/Carousel5.jsx';
 import Kohiflow from '../Carousel/KohiOverflow.jsx';
 
+import { Tooltip } from 'react-tooltip';
+
 import AOS from "aos"
 import "aos/dist/aos.css";
 
@@ -40,12 +42,22 @@ const SchoolWork = () => {
 
                 <div className="flex flex-wrap items-center justify-center gap-4 mb-4 text-center">
                   
-                  <span className='text-cyan-100'data-aos="fade-right">Tools:</span>
-                  <div className="flex gap-2">
-                    {school01.Tools.map((tool, index) => (
-                      <img key={index} src={tool} alt={`Tool ${index}`} className="w-8 h-8 justify-center items-center" data-aos="zoom-in" />
-                    ))}
-                  </div>
+                  <span className='text-[#0e1111]'data-aos="fade-right">Tools:</span>
+                  <div className="flex gap-2" data-aos="zoom-in">
+                      {school01.Tools.map((tool, index) => (
+                        <div key={index}>
+                          <img
+                            src={tool.icon}
+                            alt={tool.label}
+                            data-tooltip-id={`tooltip-${index}`}
+                            data-tooltip-content={tool.label}
+                            className="w-8 h-8"
+                            data-aos="zoom-in"
+                          />
+                          <Tooltip id={`tooltip-${index}`} place="top" />
+                        </div>
+                      ))}
+                    </div>
                   <p className="italic mb-0">
                     <span className='text-cyan-100'data-aos="fade-right">Role:</span> {school01.Role}
                   </p>
@@ -78,12 +90,22 @@ const SchoolWork = () => {
               <h2 className="text-4xl font-bold tracking-wide mb-2 text-white " data-aos="fade-down">{school02.Title}</h2>
               </div>
           <div className="flex flex-wrap items-center justify-center gap-4 mb-4 text-center">
-                  <span className='text-[#d1d1d1]' data-aos="fade-right">Tools:</span>
-                  <div className="flex gap-2" data-aos="zoom-in" >
-                    {school02.Tools.map((tool, index) => (
-                      <img key={index} src={tool} alt={`Tool ${index}`} className="w-11 h-8 justify-center items-center" />
-                    ))}
-                  </div>
+                  <span className='text-[#0e1111]' data-aos="fade-right">Tools:</span>
+                  <div className="flex gap-2" data-aos="zoom-in">
+                      {school02.Tools.map((tool, index) => (
+                        <div key={index}>
+                          <img
+                            src={tool.icon}
+                            alt={tool.label}
+                            data-tooltip-id={`tooltip-${index}`}
+                            data-tooltip-content={tool.label}
+                            className="w-11 h-8"
+                            data-aos="zoom-in"
+                          />
+                          <Tooltip id={`tooltip-${index}`} place="top" />
+                        </div>
+                      ))}
+                    </div>
                   <p className="italic mb-0 text-white">
                     <span className='text-[#d1d1d1]'>Role:</span> {school01.Role}
                   </p>
@@ -105,12 +127,22 @@ const SchoolWork = () => {
               <h2 className="text-4xl font-bold tracking-wide mb-2 text-black " data-aos="fade-down">{school03.Title}</h2>
               </div>
           <div className="flex flex-wrap items-center justify-center gap-4 mb-4 text-center">
-                  <span className='text-[#d1d1d1]' data-aos="fade-right">Tools:</span>
-                  <div className="flex gap-2" data-aos="zoom-in" >
-                    {school03.Tools.map((tool, index) => (
-                      <img key={index} src={tool} alt={`Tool ${index}`} className="w-8 h-8 justify-center items-center" />
-                    ))}
-                  </div>
+                  <span className='text-[#0e1111]' data-aos="fade-right">Tools:</span>
+                  <div className="flex gap-2" data-aos="zoom-in">
+                      {school03.Tools.map((tool, index) => (
+                        <div key={index}>
+                          <img
+                            src={tool.icon}
+                            alt={tool.label}
+                            data-tooltip-id={`tooltip-${index}`}
+                            data-tooltip-content={tool.label}
+                            className="w-8 h-8"
+                            data-aos="zoom-in"
+                          />
+                          <Tooltip id={`tooltip-${index}`} place="top" />
+                        </div>
+                      ))}
+                    </div>
                   <p className="italic mb-0 text-white">
                     <span className='text-[#d1d1d1]'>Role:</span> {school03.Role}
                   </p>
@@ -134,17 +166,22 @@ const SchoolWork = () => {
               </h2>
 
               <div className="flex flex-wrap items-center justify-center gap-4 text-center">
-                <span className="text-[#d1d1d1]" data-aos="fade-right">Tools:</span>
-                <div className="flex gap-2" data-aos="zoom-in" >
-                  {school04.Tools.map((tool, index) => (
-                    <img 
-                      key={index}
-                      src={tool}
-                      alt={`Tool ${index}`}
-                      className="w-8 h-8"
-                    />
-                  ))}
-                </div>
+                <span className="text-[#0e1111]" data-aos="fade-right">Tools:</span>
+                <div className="flex gap-2" data-aos="zoom-in">
+                      {school04.Tools.map((tool, index) => (
+                        <div key={index}>
+                          <img
+                            src={tool.icon}
+                            alt={tool.label}
+                            data-tooltip-id={`tooltip-${index}`}
+                            data-tooltip-content={tool.label}
+                            className="w-8 h-8"
+                            data-aos="zoom-in"
+                          />
+                          <Tooltip id={`tooltip-${index}`} place="top" />
+                        </div>
+                      ))}
+                  </div>
                 <p className="italic text-black" >
                   <span className="text-[#d1d1d1]" data-aos="fade-left" >Role:</span> {school03.Role}
                 </p>
@@ -168,17 +205,22 @@ const SchoolWork = () => {
               </h2>
 
               <div className="flex flex-wrap items-center justify-center gap-4 text-center">
-                <span className="text-[#d1d1d1]"data-aos="fade-right">Tools:</span>
-                <div className="flex gap-2" data-aos="zoom-in" >
-                  {school05.Tools.map((tool, index) => (
-                    <img
-                      key={index}
-                      src={tool}
-                      alt={`Tool ${index}`}
-                      className="w-8 h-8"
-                    />
-                  ))}
-                </div>
+                <span className="text-[#0e1111]"data-aos="fade-right">Tools:</span>
+                <div className="flex gap-2" data-aos="zoom-in">
+                      {school05.Tools.map((tool, index) => (
+                        <div key={index}>
+                          <img
+                            src={tool.icon}
+                            alt={tool.label}
+                            data-tooltip-id={`tooltip-${index}`}
+                            data-tooltip-content={tool.label}
+                            className="w-8 h-8"
+                            data-aos="zoom-in"
+                          />
+                          <Tooltip id={`tooltip-${index}`} place="top" />
+                        </div>
+                      ))}
+                    </div>
                 <p className="italic text-black" >
                   <span className="text-[#d1d1d1]" data-aos="fade-left">Role:</span> {school03.Role}
                 </p>
@@ -201,14 +243,24 @@ const SchoolWork = () => {
               <h2 className="text-4xl font-bold tracking-wide mb-2 text-black " data-aos="fade-down">{school06.Title}</h2>
               </div>
           <div className="flex flex-wrap items-center justify-center gap-4 mb-4 text-center">
-                  <span className='text-[#d1d1d1]' data-aos="fade-right">Tools:</span>
-                  <div className="flex gap-2" data-aos="zoom-in" >
-                    {school06.Tools.map((tool, index) => (
-                      <img key={index} src={tool} alt={`Tool ${index}`} className="w-8 h-8 justify-center items-center" />
-                    ))}
-                  </div>
+                  <span className='text-[#0e1111]' data-aos="fade-right">Tools:</span>
+                  <div className="flex gap-2" data-aos="zoom-in">
+                      {school06.Tools.map((tool, index) => (
+                        <div key={index}>
+                          <img
+                            src={tool.icon}
+                            alt={tool.label}
+                            data-tooltip-id={`tooltip-${index}`}
+                            data-tooltip-content={tool.label}
+                            className="w-8 h-8"
+                            data-aos="zoom-in"
+                          />
+                          <Tooltip id={`tooltip-${index}`} place="top" />
+                        </div>
+                      ))}
+                    </div>
                   <p className="italic mb-0 text-white">
-                    <span className='text-[#d1d1d1]' data-aos="fade-left">Role:</span> {school06.Role}
+                    <span className='text-[#0e1111]' data-aos="fade-left">Role:</span> {school06.Role}
                   </p>
 
                   
