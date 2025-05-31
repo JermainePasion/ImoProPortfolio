@@ -90,7 +90,7 @@ const ContactForm = () => {
                       Email Address
                     </h4>
                     <p data-aos="fade-up" className="text-base text-body-color dark:text-dark-6">
-                      idgnacio03@gmail.com
+                      id.ignacio03@gmail.com
                     </p>
                   </div>
                 </div>
