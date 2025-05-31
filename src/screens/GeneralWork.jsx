@@ -13,9 +13,10 @@ import DashboardLayout from '../components/DashboardLayout';
 import GifOverlay from '../components/GifOverlay';
 import { CommissionData } from '../utils/CommissionData'
 const GeneralWork = () => {
-    useEffect(()=>{
-      AOS.init({duration:1200})
-    })
+useEffect(() => {
+  AOS.init({ duration: 1200 });
+  AOS.refresh();
+}, []);
   return (
     <DashboardLayout>
       <div className='p-5'>

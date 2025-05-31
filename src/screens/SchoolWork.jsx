@@ -25,9 +25,10 @@ const SchoolWork = () => {
   const school05 = SchoolData.find((item) => item.id === '05'); 
   const school06 = SchoolData.find((item) => item.id === '06'); 
 
-    useEffect(()=>{
-      AOS.init({duration:1200})
-    })
+useEffect(() => {
+  AOS.init({ duration: 1200 });
+  AOS.refresh();
+}, []);
 
   return (
     <DashboardLayout>
