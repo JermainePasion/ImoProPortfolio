@@ -1,15 +1,39 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import AOS from "aos"
 import "aos/dist/aos.css";
+import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ContactForm = () => {
 
   useEffect(()=>{
       AOS.init({duration:1500})
     })
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      'service_e7d4hr9',    
+      'template_axla6ht',    
+      form.current,
+      'L89kQHtWJlhYoNlc1'      
+    ).then((result) => {
+    console.log(result.text);
+    toast.success('Message sent successfully!');
+    form.current.reset();
+  }, (error) => {
+    console.log(error.text);
+    toast.error('Failed to send message. Please try again later.');
+  });
+};
+    
 
   return (
     <>
+    <ToastContainer position="top-center" autoClose={3000} />
       <section className=" mt-10 overflow-hidden bg-white py-20 dark:bg-dark lg:py-[120px] justify-center mx-auto">
         <div className="container mx-auto">
           <div className="-mx-4 flex flex-wrap justify-center lg:justify-between">
@@ -74,7 +98,7 @@ const ContactForm = () => {
             </div>
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
               <div data-aos="fade-up" className="relative rounded-lg bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12 mx-auto">
-                <form>
+                <form ref={form} onSubmit={sendEmail}>
                   <ContactInputBox
                     type="text"
                     name="name"
@@ -88,7 +112,7 @@ const ContactForm = () => {
                   <ContactTextArea
                     row="6"
                     placeholder="Your Message"
-                    name="details"
+                    name="messagepm "
                     defaultValue=""
                   />
                   <div>
