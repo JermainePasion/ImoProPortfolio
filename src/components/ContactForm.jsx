@@ -112,7 +112,7 @@ const ContactForm = () => {
                   <ContactTextArea
                     row="6"
                     placeholder="Your Message"
-                    name="messagepm "
+                    name="message"
                     defaultValue=""
                   />
                   <div>
