@@ -11,7 +11,7 @@ const About = () => {
     <DashboardLayout>
 
         <div className='space-y-4 mt-15 max-w-5xl mx-auto p-5'>
-          <h1 className='font-bold text-2xl tracking-wide'>I Am Imogen Ignacio.</h1>
+          <h1 className='font-bold text-2xl tracking-wide'>I am Imogen Ignacio.</h1>
           <div className='flex flex-col md:flex-row items-center gap-6 max-w-7xl mx-auto sm:text-left'>
             <div className=''>
               <p className='mb-5' style={{ fontFamily: "'PT Sans', sans-serif" }}>She is an incoming fourth-year student, studying for a Bachelor of Science in Entertainment and Multimedia Computing with an Area of Specialization in Digital Animation, at Holy Angel University in Angeles City.</p>
