@@ -14,8 +14,17 @@ import GifOverlay from '../components/GifOverlay';
 import { CommissionData } from '../utils/CommissionData'
 const GeneralWork = () => {
 useEffect(() => {
-  AOS.init({ duration: 1200 });
-  AOS.refresh();
+  AOS.init({
+    duration: 1200,
+    offset: 200,     
+    once: true,      
+    mirror: false,   
+  });
+
+ 
+  setTimeout(() => {
+    AOS.refresh();
+  }, 300);
 }, []);
   return (
     <DashboardLayout>
