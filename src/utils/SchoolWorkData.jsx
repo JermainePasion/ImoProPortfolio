@@ -31,7 +31,7 @@ export const SchoolData =[
     },
     {
         id: "04",
-        Title: "ADV2D | Activity: Environment Design: 'Gingerbread Tower'",
+        Title: "COMGRAPH | Finals Project: 'Running Late!' Game",
         Tools: [{ icon: procreate, label: "Procreate" }],
         Role: "​Concept Artist, Character Designer, Storyboard, Environmental Designer and Artist."
     },
