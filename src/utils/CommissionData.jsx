@@ -6,24 +6,24 @@ import Commission3 from "../assets/images/Commission3.jpg"
 export const CommissionData =[
   {
         id : "01",
-        Handle: "@DragonLover69 (Twitter/X)",
+        Handle: "@Kerekira (Twitter/X)",
         ArtWork: [Commission1],
-        Date: "19/05/2025",
-        Description: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Vitae pellentesque sem placerat in id cursus mi. Tempus leo eu aenean sed diam urna tempor. Nec metus bibendum egestas iaculis massa nisl malesuada. Ut hendrerit semper vel class aptent taciti sociosqu. Conubia nostra inceptos himenaeos orci varius natoque penatibus. Montes nascetur ridiculus mus donec rhoncus eros lobortis. Maximus eget fermentum odio phasellus non purus est. Vestibulum fusce dictum risus blandit quis suspendisse aliquet. Ante condimentum neque at luctus nibh finibus facilisis. Ligula congue sollicitudin erat viverra ac tincidunt nam. Euismod quam justo lectus commodo augue arcu dignissim."
+        Date: "23/03/2025",
+        Description: "It was my first drawing a background for a commission. It was challenging, but I had fun."
     },
     {
         id : "02",
-        Handle: "@DragonLover69 (Twitter/X)",
+        Handle: "@Rutabega (Twitter/X)",
         ArtWork: [Commission2],
-        Date: "20/05/2025",
-        Description: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Vitae pellentesque sem placerat in id cursus mi."
+        Date: "05/18/2024",
+        Description: "I absolutely love this concept. It was a gift from the client to their friend, and I’m glad to be a part of it."
     },
 
     {
         id : "03",
-        Handle: "@DragonLover69 (Twitter/X)",
+        Handle: "@Zeltdraws (Twitter/X)",
         ArtWork: [Commission3],
-        Date: "21/05/2025",
-        Description: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Vitae pellentesque sem placerat in id cursus mi."
+        Date: "14/12/2023",
+        Description: "Until now, I’m proud of this work, because I was able to experiment with shadings and highlights. I don’t work with metal as much, but it was fun!"
     }
 ]
