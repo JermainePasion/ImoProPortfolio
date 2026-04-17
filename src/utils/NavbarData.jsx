@@ -1,23 +1,28 @@
 export const NavData =[
     {
         id : "01",
-        label: "Portfolio",
+        label: "films",
         path: "/"
     },
     {
         id: "02",
-        label: "School Work",
-        path:"/schoolwork"
+        label: "visual development",
+        path:"/k"
     },
 
     {
         id : "03",
-        label: "General Work",
-        path: "/generalwork"
+        label: "graphics",
+        path: "/"
     },
     {
         id: "04",
-        label: "About/Contact",
-        path:"/about"
+        label: "work",
+        path:"/"
+    },
+    {
+        id: "05",
+        label: "illustrations",
+        path:"/"
     }
 ]

@@ -5,11 +5,7 @@ import {
   Route,
   Navigate
 } from "react-router-dom"
-
-import About from './screens/About'
-import GeneralWork from './screens/GeneralWork'
 import Home from './screens/Home'
-import SchoolWork from './screens/SchoolWork'
 import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
@@ -19,9 +15,6 @@ const App = () => {
         <ScrollToTop />
         <Routes>
           <Route path="/" element = {<Home/>}/>
-          <Route path="/about" element = {<About/>}/>
-          <Route path="/generalwork" element = {<GeneralWork/>}/>
-          <Route path="/schoolwork" element = {<SchoolWork/>}/>
         </Routes>
       </Router>
     </div>
