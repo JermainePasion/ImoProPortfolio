@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import { NavData } from '../utils/NavbarData';
 import { Squash } from 'hamburger-react'
 import imoLogo from '../assets/imoLogo.png'; 
 
 const Navbar = () => {
 
-  const navigate = useNavigate();
   const handleClick = (route) => navigate(route);
 
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="w-full sticky top-0 bg-white z-10 p-4">
+    <div className="w-full sticky top-0 bg-white z-10 p--2">
 
       <div className="grid grid-cols-[auto_1fr] items-center w-full">
 
