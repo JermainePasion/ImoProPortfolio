@@ -2,52 +2,57 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuFacebook, LuLinkedin } from "react-icons/lu";
 import { SlSocialInstagram } from "react-icons/sl";
+import imoAbout from "../assets/images/imoAbout.svg"
+import paperBackground from "../assets/images/paperBackground.png"
 
 const StickyCard = ({ visible }) => {
   return (
     <div
-      className={`
-        fixed top-6 left-6 w-72 h-[calc(100vh-3rem)]
-        bg-white rounded-3xl shadow-xl border border-gray-100
-        flex flex-col p-6 gap-4
-        transition-all duration-700 ease-in-out
-        ${visible
-            ? 'translate-x-0 opacity-100'
-            : '-translate-x-[110%] opacity-0 pointer-events-none'}
-        `}
-      style={{ transitionDelay: visible ? '150ms' : '0ms' }}
-    >
+  className={`
+    fixed top-10 left-0 w-72
+    rounded-r-3xl shadow-xl border-r border-gray-100
+    flex flex-col p-6 gap-4
+    transition-all duration-700 ease-in-out
+    overflow-hidden relative
+    ${visible
+        ? 'translate-x-0 opacity-100'
+        : '-translate-x-full opacity-0 pointer-events-none'}
+  `}
+  style={{ transitionDelay: visible ? '150ms' : '0ms' }}
+>
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${paperBackground})` }}
+      />
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${paperBackground})`, backgroundColor: '#FDFF92', opacity:'50%' }}
+      />
 
-      <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold text-lg">
-          II
+    <div className="relative z-10 flex flex-col gap-4 h-full"> 
+        <div className="flex flex-col items-center gap-3  text-center">
+          <section>
+            <h1 className="font-bold text-4xl">hello!</h1>
+            <h1 className="font-bold text-1xl mt-2">I am Imo Ignacio.</h1>
+            <p className="text-left mt-3 text-xs italic text-[#313131]">I am a 22-year-old, a fresh Bachelor of Science in Entertainment and Multimedia Computing (BS-EMC) graduate of Holy Angel University.</p>
+            <p className="text-left mt-3 text-xs italic text-[#313131]">I  am a creative illustrator who desires to keep on learning and improve in other art mediums! Currently, I am interested in the visual development of stories, designing book covers, and emulating posters for song lyrics.</p>
+            <p className="text-left mt-3 text-xs italic text-[#313131]">Whether it be fundamentals in art, typography, graphicdesign, I am open to all possibilities and opportunities.</p>
+          </section>
         </div>
-        <div>
-          <p className="font-semibold text-[#313131] text-sm leading-tight">imo ignacio</p>
-          <p className="text-xs text-gray-400">creative illustrator</p>
+
+        <div className="flex items-center justify-center">
+            <img src={imoAbout}/>
+        </div>
+
+        <div className="flex items-center justify-center gap-6 ">
+          <LuFacebook size={18} className=" hover:text-[#313131] cursor-pointer transition-colors" />
+          <FaSquareXTwitter size={18} className=" hover:text-[#313131] cursor-pointer transition-colors" />
+          <MdOutlineEmail size={18} className=" hover:text-[#313131] cursor-pointer transition-colors" />
+          <LuLinkedin size={18} className=" hover:text-[#313131] cursor-pointer transition-colors" />
+          <SlSocialInstagram size={18} className=" hover:text-[#313131] cursor-pointer transition-colors" />
         </div>
       </div>
-
-      <div className="border-t border-gray-100 pt-4 flex flex-col gap-3 flex-1">
-        <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Navigation</p>
-        {['Portfolio', 'About', 'Services', 'Contact'].map((item) => (
-          <button
-            key={item}
-            className="text-left text-sm text-[#313131] hover:text-gray-500 transition-colors py-1"
-          >
-            {item}
-          </button>
-        ))}
-      </div>
-
-      <div className="flex gap-4 pt-4 border-t border-gray-100">
-        <LuFacebook size={18} className="text-gray-400 hover:text-[#313131] cursor-pointer transition-colors" />
-        <FaSquareXTwitter size={18} className="text-gray-400 hover:text-[#313131] cursor-pointer transition-colors" />
-        <MdOutlineEmail size={18} className="text-gray-400 hover:text-[#313131] cursor-pointer transition-colors" />
-        <LuLinkedin size={18} className="text-gray-400 hover:text-[#313131] cursor-pointer transition-colors" />
-        <SlSocialInstagram size={18} className="text-gray-400 hover:text-[#313131] cursor-pointer transition-colors" />
-      </div>
-    </div>
+    </div>     
   )
 }
 
