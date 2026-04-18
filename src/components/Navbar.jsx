@@ -20,11 +20,10 @@ const Navbar = () => {
           <div className="md:hidden">
             <Squash toggled={isOpen} toggle={setIsOpen} />
           </div>
-
           <img
             src={imoLogo}
             alt="Logo"
-            className="h-25 w-auto cursor-pointer"
+            className="h-30 w-auto cursor-pointer"
             onClick={() => handleClick('/')}
           />
         </div>
