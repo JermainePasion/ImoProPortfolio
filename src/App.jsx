@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import Home from './screens/Home'
 import StickyCard from "./components/StickyCard"
 import Navbar from './components/Navbar'
+import Films from './screens/Films'
 
 const App = () => {
   const [scrolledAway, setScrolledAway] = useState(false)
@@ -31,6 +32,7 @@ const App = () => {
     >
       <Navbar />
       <Home scrolledAway={scrolledAway} />
+      <Films scrolledAway={scrolledAway} />
       <StickyCard visible={scrolledAway}/>
     </div>
   )
