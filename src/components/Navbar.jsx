@@ -21,12 +21,12 @@ const Navbar = () => {
           <img
             src={imoLogo}
             alt="Logo"
-            className="h-30 w-auto cursor-pointer"
+            className="h-35 w-auto cursor-pointer ml-10"
             onClick={() => handleClick('/')}
           />
         </div>
 
-        <div className="hidden md:flex justify-center gap-45 w-full">
+        <div className="hidden md:flex justify-center gap-55 w-full">
           {NavData.map((item, index) => (
             <button
               key={`menu${index}`}

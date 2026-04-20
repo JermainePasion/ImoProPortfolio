@@ -3,7 +3,7 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuFacebook, LuLinkedin } from "react-icons/lu";
 import { SlSocialInstagram } from "react-icons/sl";
-import { RiMenuFoldLine, RiMenuUnfoldLine } from "react-icons/ri";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import imoAbout from "../assets/images/imoAbout.svg"
 import paperBackground from "../assets/images/paperBackground.png"
 
@@ -12,44 +12,41 @@ const StickyCard = ({ visible }) => {
 
   return (
     <>
-      {/* Mobile toggle button */}
-      {visible && (
-        <button
-          onClick={() => setMobileOpen(prev => !prev)}
-          className="md:hidden fixed top-4 left-4 z-50 bg-white border border-gray-200 rounded-full p-2 shadow-md"
-        >
-          {mobileOpen
-            ? <RiMenuFoldLine size={18} />
-            : <RiMenuUnfoldLine size={18} />}
-        </button>
-      )}
+    {/* notes: more centered, taller length,*/}
 
-      {/* Card */}
       <div
         className={`
           fixed top-30 left-0 w-60 h-100
           rounded-r-3xl shadow-xl border-r border-gray-100
           flex flex-col p-4 gap-3
           transition-all duration-700 ease-in-out
-          overflow-hidden
+          overflow-visible
           z-40
           ${visible
-            ? 'opacity-100'
-            : '-translate-x-full opacity-0 pointer-events-none'}
-          ${visible
             ? 'md:translate-x-0 ' + (mobileOpen ? 'translate-x-0' : '-translate-x-full')
-            : '-translate-x-full'}
+            : '-translate-x-full opacity-0 pointer-events-none'}
         `}
         style={{ transitionDelay: visible ? '150ms' : '0ms' }}
       >
+
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${paperBackground})` }}
+          className="absolute inset-0 bg-cover bg-center rounded-r-3xl overflow-hidden"
+          style={{ backgroundImage: `url(${paperBackground})`, opacity: '50%' }}
         />
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 rounded-r-3xl overflow-hidden"
           style={{ backgroundColor: '#FDFF92', opacity: '50%' }}
         />
+        {visible && (
+          <button
+            onClick={() => setMobileOpen(prev => !prev)}
+            className="md:hidden absolute -right-7 top-1/2 -translate-y-1/2 z-50
+                       bg-white border border-gray-200 shadow-md
+                       rounded-r-xl px-1 py-3 flex items-center justify-center"
+          >
+            {mobileOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
+          </button>
+        )}
 
         <div className="relative z-10 flex flex-col gap-3 h-full">
           <div className="flex flex-col items-center text-center">

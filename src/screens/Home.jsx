@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import DashboardLayout from '../components/DashboardLayout'
 import 'react-medium-image-zoom/dist/styles.css';
 import landingPhoto from "../assets/landingPhoto.png"
@@ -26,7 +26,7 @@ const Home = ({ scrolledAway }) => {
       `}
     >
       <DashboardLayout>
-        <div className="flex flex-col md:grid md:grid-cols-2 items-center w-full p-4 md:p-6 gap-6 md:gap-0">
+        <div className="flex flex-col md:grid md:grid-cols-2 items-center w-full p-4 md:p-6 gap-6 md:gap-0 -mt-4 md:-mt-6">
           <section className="flex flex-col items-center justify-center text-center order-2 md:order-1 md:-mr-5">
             <h2 className="text-4xl sm:text-5xl md:text-7xl text-[#313131]">
               <b>imo</b> ignacio

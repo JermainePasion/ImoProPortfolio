@@ -1,7 +1,9 @@
 import logo from "../assets/icons/gabLogo.png"
 
 const Films = ({ scrolledAway }) => {
+  {/* bigger photo, bigger padding, bigger favicon, bigger logo (fab studios), title higher margin*/}
   return (
+    
     <div
       className={`
         absolute inset-0 overflow-y-auto
@@ -22,15 +24,15 @@ const Films = ({ scrolledAway }) => {
           </p>
           <iframe
             className="w-full h-48 md:h-80 shadow-lg rounded-2xl"
-            src="https://www.youtube.com/embed/CAsKkFjBIEo?si=MP78O2C5pNUqMiO8"
+            src="https://drive.google.com/file/d/1fAKC4roxIpyg-mp0MVSHecnhEjG7nOKd/preview"
             title="GANDA | animprod"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="autoplay"
             allowFullScreen
           />
           <p className="text-left text-xs text-gray-500 pt-3 italic w-full">
             Storyboard Artist, Lead Clean-Up Artist, Head of Communications, 2D Asset Artist
           </p>
-          <p className="text-left text-xs pt-2 w-full">
+          <p className="text-left text-md pt-2 w-full mt-8">
             Ganda or Pretty, is an animation film made in collaboration with Alaya Women's Center, as a means of spreading awareness about Online Sexual Abuse and Exploitation Against Children (OSAEC).
           </p>
         </div>
@@ -45,7 +47,7 @@ const Films = ({ scrolledAway }) => {
           </p>
           <iframe
             className="w-full h-48 md:h-80 shadow-lg rounded-2xl"
-            src="https://www.youtube.com/embed/9gr45EIsHLU?si=t9MFoOU_ZMrAHOko"
+            src="https://drive.google.com/file/d/1VoWDZOCR6NrfCoaKxSRZheyGJWkdgFrh/preview"
             title="DRIVE | capstone"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -53,7 +55,7 @@ const Films = ({ scrolledAway }) => {
           <p className="text-left text-xs text-gray-500 pt-3 italic w-full">
             Storyboard Artist, Lead Clean-Up Artist, Assistant Colorist, Voice Actor
           </p>
-          <p className="text-right text-xs pt-2 w-full">
+          <p className="text-left text-md pt-2 w-full mt-6">
             DRIVE, or Demonstration of Responsible and Intelligent Vehicle Etiquette is our capstone film for Animation. It follows three characters with a branching storyline navigating their recklessness they encounter on the road.
           </p>
         </div>
