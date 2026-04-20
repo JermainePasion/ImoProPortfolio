@@ -25,15 +25,17 @@ const App = () => {
 
   return (
     <div
-      className="relative w-full h-screen overflow-hidden"
+      className="relative w-full h-screen overflow-hidden flex flex-col"
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       <Navbar />
-      <Home scrolledAway={scrolledAway} />
-      <Films scrolledAway={scrolledAway} />
-      <StickyCard visible={scrolledAway}/>
+      <div className="relative flex-1 overflow-hidden">
+        <Home scrolledAway={scrolledAway} />
+        <Films scrolledAway={scrolledAway} />
+      </div>
+      <StickyCard visible={scrolledAway} />
     </div>
   )
 }
