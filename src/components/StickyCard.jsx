@@ -16,7 +16,7 @@ const StickyCard = ({ visible }) => {
 
       <div
         className={`
-          fixed top-30 left-0 w-60 h-100
+          fixed top-45 left-0 w-60 h-120
           rounded-r-3xl shadow-xl border-r border-gray-100
           flex flex-col p-4 gap-3
           transition-all duration-700 ease-in-out
