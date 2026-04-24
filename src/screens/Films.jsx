@@ -1,7 +1,7 @@
 import logo from "../assets/icons/gabLogo.png"
 
 const Films = ({ scrolledAway }) => {
-  {/* bigger photo, bigger padding, bigger favicon, bigger middle logo, title higher margin*/}
+  {/* change sbi ni imogen: bigger photo, bigger padding, bigger favicon, bigger middle logo, title higher margin*/}
   return (
     
     <div
