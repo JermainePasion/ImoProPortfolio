@@ -1,17 +1,17 @@
 import logo from "../assets/icons/gabLogo.png"
 
-const Films = ({ scrolledAway }) => {
+const Films = ({ scrolledAway, page }) => {
   {/* change sbi ni imogen: bigger photo, bigger padding, bigger favicon, bigger middle logo, title higher margin*/}
   return (
     
     <div
         className={`
-          absolute inset-0 overflow-y-auto
-          transition-all duration-700 ease-in-out
-          ${scrolledAway
-            ? 'translate-x-0 opacity-100'
-            : 'translate-x-full opacity-0 pointer-events-none'}
-        `}
+        absolute inset-0 overflow-y-auto
+        transition-all duration-700 ease-in-out
+        ${page === 0 ? 'translate-x-full opacity-0 pointer-events-none' : ''}
+        ${page === 1 ? 'translate-x-0 opacity-100' : ''}
+        ${page === 2 ? '-translate-x-full opacity-0 pointer-events-none' : ''}
+      `}
       >
         <div className="flex flex-col lg:flex-row 
                         md:items-center md:justify-center

@@ -3,14 +3,15 @@ import Home from './screens/Home'
 import StickyCard from "./components/StickyCard"
 import Navbar from './components/Navbar'
 import Films from './screens/Films'
+import VisDev from './screens/VisDev'
 
 const App = () => {
-  const [scrolledAway, setScrolledAway] = useState(false)
+  const [page, setPage] = useState(0) 
   const touchStartY = useRef(null)
 
   const handleWheel = (e) => {
-    if (e.deltaY > 30 && !scrolledAway) setScrolledAway(true)
-    if (e.deltaY < -30 && scrolledAway) setScrolledAway(false)
+    if (e.deltaY > 30) setPage(prev => Math.min(prev + 1, 2))
+    if (e.deltaY < -30) setPage(prev => Math.max(prev - 1, 0))
   }
 
   const handleTouchStart = (e) => {
@@ -19,8 +20,8 @@ const App = () => {
 
   const handleTouchEnd = (e) => {
     const diff = touchStartY.current - e.changedTouches[0].clientY
-    if (diff > 40 && !scrolledAway) setScrolledAway(true)
-    if (diff < -40 && scrolledAway) setScrolledAway(false)
+    if (diff > 40) setPage(prev => Math.min(prev + 1, 2))
+    if (diff < -40) setPage(prev => Math.max(prev - 1, 0))
   }
 
   return (
@@ -32,10 +33,11 @@ const App = () => {
     >
       <Navbar />
       <div className="relative flex-1 overflow-hidden">
-        <Home scrolledAway={scrolledAway} />
-        <Films scrolledAway={scrolledAway} />
+        <Home scrolledAway={page > 0} />
+        <Films scrolledAway={page === 1} page={page} />
+        <VisDev scrolledAway={page === 2} />
       </div>
-      <StickyCard visible={scrolledAway} />
+      <StickyCard visible={page > 0} />
     </div>
   )
 }
