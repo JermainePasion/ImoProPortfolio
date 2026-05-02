@@ -7,19 +7,10 @@ const cards = [
   { title: 'stuck in the summer of ‘97', img: '#' },
 ]
 
-const VisDev = ({ scrolledAway }) => {
+const VisDev = () => {
   return (
-    <div
-      className={`
-        absolute inset-0 overflow-y-auto
-        transition-all duration-700 ease-in-out
-        ${scrolledAway
-          ? 'translate-x-0 opacity-100'
-          : 'translate-x-full opacity-0 pointer-events-none'}
-      `}
-    >
+    <div className="absolute inset-0 overflow-y-auto">
       <div className="px-8 md:pl-80 md:pr-16 py-8 w-full">
-
         <div className="grid grid-cols-3 grid-rows-2 gap-4 md:gap-6">
           {cards.map((card) => (
             <div
@@ -42,6 +33,16 @@ const VisDev = ({ scrolledAway }) => {
           ))}
         </div>
       </div>
+      <p
+            className="fixed z-50 pointer-events-none select-none font-extrabold text-[#313131]"
+            style={{
+              fontSize: "clamp(2.5rem, 8vw, 6rem)",
+              bottom: "clamp(1rem, 4vw, 4rem)",
+              right: "clamp(1rem, 4vw, 5rem)",
+            }}
+          >
+            VisDev.
+          </p>
     </div>
   )
 }

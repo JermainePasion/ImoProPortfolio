@@ -1,19 +1,19 @@
 import logo from "../assets/icons/gabLogo.png"
 
-const Films = ({ scrolledAway, page }) => {
+const Films = ({page }) => {
   {/* change sbi ni imogen: bigger photo, bigger padding, bigger favicon, bigger middle logo, title higher margin*/}
   return (
     
     <div
-        className={`
-        absolute inset-0 overflow-y-auto
+      className={`
+        absolute inset-0 overflow-y-auto relative
         transition-all duration-700 ease-in-out
         ${page === 0 ? 'translate-x-full opacity-0 pointer-events-none' : ''}
         ${page === 1 ? 'translate-x-0 opacity-100' : ''}
         ${page === 2 ? '-translate-x-full opacity-0 pointer-events-none' : ''}
       `}
-      >
-        <div className="flex flex-col lg:flex-row 
+    >
+        <div className="relative flex flex-col lg:flex-row 
                         md:items-center md:justify-center
                         gap-8 px-8 md:pl-80 md:pr-16
                         py-6 w-full min-h-full items-center">
@@ -22,13 +22,7 @@ const Films = ({ scrolledAway, page }) => {
             <p className="text-xl md:text-2xl font-bold text-[#313131] pb-2 text-center mb-4">
               GANDA | animprod
             </p>
-            <iframe
-              className="w-full h-56 md:h-96 shadow-lg rounded-2xl"
-              src="https://drive.google.com/file/d/1fAKC4roxIpyg-mp0MVSHecnhEjG7nOKd/preview"
-              title="GANDA | animprod"
-              allow="autoplay"
-              allowFullScreen
-            />
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/6fmCW29UJfw?si=TPNbbNfJoTyt6tFe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <p className="text-left text-xs text-gray-500 pt-3 italic w-full">
               Storyboard Artist, Lead Clean-Up Artist, Head of Communications, 2D Asset Artist
             </p>
@@ -45,13 +39,7 @@ const Films = ({ scrolledAway, page }) => {
             <p className="text-xl md:text-2xl font-bold text-[#313131] pb-2 text-center mb-4">
               DRIVE | capstone
             </p>
-            <iframe
-              className="w-full h-56 md:h-96 shadow-lg rounded-2xl"
-              src="https://drive.google.com/file/d/1VoWDZOCR6NrfCoaKxSRZheyGJWkdgFrh/preview"
-              title="DRIVE | capstone"
-              allow="autoplay"
-              allowFullScreen
-            />
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/5IqF3LhLiOM?si=_6FcQWJc6yZu31xZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <p className="text-left text-xs text-gray-500 pt-3 italic w-full">
               Storyboard Artist, Lead Clean-Up Artist, Assistant Colorist, Voice Actor
             </p>
@@ -61,6 +49,16 @@ const Films = ({ scrolledAway, page }) => {
           </div>
 
         </div>
+          <p
+            className="fixed z-50 pointer-events-none select-none font-extrabold text-[#313131]"
+            style={{
+              fontSize: "clamp(2.5rem, 8vw, 6rem)",
+              bottom: "clamp(1rem, 4vw, 4rem)",
+              right: "clamp(1rem, 4vw, 5rem)",
+            }}
+          >
+            Films.
+          </p>
       </div>
   )
 }
