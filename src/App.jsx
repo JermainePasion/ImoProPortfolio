@@ -1,16 +1,22 @@
 import { useState, useRef } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Home from './screens/Home'
 import StickyCard from "./components/StickyCard"
 import Navbar from './components/Navbar'
 import Films from './screens/Films'
 import VisDev from './screens/VisDev'
 import Graphics from './screens/Graphics'
+import Posters from './screens/Posters'
 
 const FADE_MS = 300
 
-const App = () => {
-  const [page, setPage] = useState(0)
-  const [displayedPage, setDisplayedPage] = useState(0)
+const MainLayout = () => {
+  const location = useLocation()
+  const initialPage = location.state?.page ?? 0
+
+  const [page, setPage] = useState(initialPage)
+  const [displayedPage, setDisplayedPage] = useState(initialPage)
+  
   const [opacity, setOpacity] = useState(1)
   const touchStartY = useRef(null)
   const transitioning = useRef(false)
@@ -54,16 +60,23 @@ const App = () => {
       onTouchEnd={handleTouchEnd}
     >
       <Navbar />
-
       <div
         className="relative flex-1 overflow-hidden"
         style={{ opacity, transition: `opacity ${FADE_MS}ms ease` }}
       >
         <Screen />
       </div>
-
       <StickyCard visible={displayedPage > 0} />
     </div>
+  )
+}
+
+const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<MainLayout />} />
+      <Route path="/posters" element={<Posters />} />
+    </Routes>
   )
 }
 

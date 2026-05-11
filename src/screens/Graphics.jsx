@@ -7,10 +7,11 @@ import CoconutLogo2 from '../assets/graphics/CoconutLogo2.png'
 import Bea from '../assets/graphics/Bea.png'
 import Nectar from '../assets/graphics/Nectar.png'
 import Spectacolar from '../assets/graphics/Spectacolar.png'
+import { useNavigate } from 'react-router-dom'
 
 const Graphics = () => {
   const [hovered, setHovered] = useState(null)
-
+  const navigate = useNavigate()
  
 
   return (
@@ -21,13 +22,14 @@ const Graphics = () => {
 
           {/* Left column — 1 big image */}
           <div
-            className="relative rounded-xl overflow-hidden bg-gray-200 flex-shrink-0"
+            className="relative rounded-xl overflow-hidden bg-gray-200 flex-shrink-0 cursor-pointer"
             style={{
               flex: hovered === "left" ? "1.6" : hovered !== null ? "0.6" : "0.7",
               transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
               minWidth: "50px",
             }}
             onMouseEnter={() => setHovered("left")}
+            onClick={() => navigate('/posters')}
             onMouseLeave={() => setHovered(null)}
           >
             <img
