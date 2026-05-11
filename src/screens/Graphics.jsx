@@ -103,6 +103,7 @@ const Graphics = () => {
                   minHeight: 0,
                 }}
                 onMouseEnter={() => setHovered(item.id)}
+                onClick={() => navigate('/product-design')}
                 onMouseLeave={() => setHovered(null)}
               >
                 <img

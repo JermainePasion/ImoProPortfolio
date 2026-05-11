@@ -7,6 +7,7 @@ import Films from './screens/Films'
 import VisDev from './screens/VisDev'
 import Graphics from './screens/Graphics'
 import Posters from './screens/Posters'
+import ProductDesign from './screens/ProductDesign'
 
 const FADE_MS = 300
 
@@ -16,7 +17,7 @@ const MainLayout = () => {
 
   const [page, setPage] = useState(initialPage)
   const [displayedPage, setDisplayedPage] = useState(initialPage)
-  
+
   const [opacity, setOpacity] = useState(1)
   const touchStartY = useRef(null)
   const transitioning = useRef(false)
@@ -76,6 +77,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<MainLayout />} />
       <Route path="/posters" element={<Posters />} />
+      <Route path="/product-design" element={<ProductDesign />} />
     </Routes>
   )
 }
