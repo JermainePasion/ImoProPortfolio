@@ -72,14 +72,23 @@ const MainLayout = () => {
   )
 }
 
+const SubPageLayout = ({ children }) => (
+  <div className="relative w-full h-screen overflow-hidden flex flex-col">
+    <Navbar />
+    <div className="relative flex-1 overflow-hidden">
+      {children}
+    </div>
+    <StickyCard visible={true} />
+  </div>
+)
+
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />} />
-      <Route path="/posters" element={<Posters />} />
-      <Route path="/product-design" element={<ProductDesign />} />
+      <Route path="/posters" element={<SubPageLayout><Posters /></SubPageLayout>} />
+      <Route path="/product-design" element={<SubPageLayout><ProductDesign /></SubPageLayout>} />
     </Routes>
   )
 }
-
 export default App

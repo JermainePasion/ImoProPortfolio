@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Nectar from '../assets/productDesign/Poster1.png'
-import Nectar2 from '../assets/productDesign/Poster1.png'  
-import Nectar3 from '../assets/productDesign/Poster1.png'
-import Nectar4 from '../assets/productDesign/Poster1.png'
-import Nectar5 from '../assets/productDesign/Poster1.png'
-import Nectar6 from '../assets/productDesign/Poster1.png'
+import Nectar from '../assets/productDesign/bathSoap.png'
+import Nectar2 from '../assets/productDesign/kohi.png'  
+import Nectar3 from '../assets/productDesign/nectar.png'
+import Nectar4 from '../assets/productDesign/can.png'
+import Nectar5 from '../assets/productDesign/matcha.png'
+import Nectar6 from '../assets/productDesign/buko.png'
+import Nectar7 from '../assets/productDesign/strawbeeri.png'
+import Nectar8 from '../assets/productDesign/sweetStrawbeeri.png'
 
 const ProductDesign = () => {
   const [hovered, setHovered] = useState(null)
@@ -24,12 +26,12 @@ const ProductDesign = () => {
 
   const Cell = ({ id, src, label, style }) => (
     <div
-      className="relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer"
+      className="relative rounded-xl overflow-hidden bg-white "
       style={style || getStyle(id)}
       onMouseEnter={() => setHovered(id)}
       onMouseLeave={() => setHovered(null)}
     >
-      {src && <img src={src} alt={label} className="absolute inset-0 w-full h-full object-cover" />}
+      {src && <img src={src} alt={label} className="absolute inset-0 w-full h-full object-contain" />}
       {label && <p className="absolute bottom-2 left-3 text-xs text-white italic">{label}</p>}
     </div>
   )
@@ -52,7 +54,7 @@ const ProductDesign = () => {
 
             {/* Row 1 — big image */}
             <div
-                className="relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer"
+                className="relative rounded-xl overflow-hidden bg-white "
                 style={{
                 flex: hovered === 'l-top' ? 1.3 : hovered !== null ? 0.85 : 1,
                 transition: 'flex 0.4s cubic-bezier(0.4,0,0.2,1)',
@@ -61,14 +63,14 @@ const ProductDesign = () => {
                 onMouseEnter={() => setHovered('l-top')}
                 onMouseLeave={() => setHovered(null)}
             >
-                <img src={Nectar} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                <img src={Nectar} alt="" className="absolute inset-0 w-full h-full object-contain" />
             </div>
 
             <div className="flex gap-3" style={{ flex: 1, minHeight: 0 }}>
                 {[['l-bot-l', Nectar2], ['l-bot-r', Nectar3]].map(([id, src]) => (
                 <div
                     key={id}
-                    className="relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer"
+                    className="relative rounded-xl overflow-hidden bg-white "
                     style={{
                     flex: hovered === id ? 1.3 : hovered !== null ? 0.85 : 1,
                     transition: 'flex 0.4s cubic-bezier(0.4,0,0.2,1)',
@@ -77,7 +79,7 @@ const ProductDesign = () => {
                     onMouseEnter={() => setHovered(id)}
                     onMouseLeave={() => setHovered(null)}
                 >
-                    <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                    <img src={src} alt="" className="absolute inset-0 w-full h-full object-contain" />
                 </div>
                 ))}
             </div>
@@ -88,7 +90,7 @@ const ProductDesign = () => {
             <div className="flex flex-col gap-3 flex-1 min-h-0">
 
             <div
-                className="relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer"
+                className="relative rounded-xl overflow-hidden bg-white "
                 style={{
                 flex: hovered === 'r-top' ? 1.3 : hovered !== null ? 0.85 : 1,
                 transition: 'flex 0.4s cubic-bezier(0.4,0,0.2,1)',
@@ -97,30 +99,32 @@ const ProductDesign = () => {
                 onMouseEnter={() => setHovered('r-top')}
                 onMouseLeave={() => setHovered(null)}
             >
-                <img src={Nectar4} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                <img src={Nectar4} alt="" className="absolute inset-0 w-full h-full object-contain" />
             </div>
 
             <div className="flex flex-col gap-3" style={{ flex: 1, minHeight: 0 }}>
-                {[['r-bot-tl', Nectar5], ['r-bot-tr', Nectar6]].map(([id, src]) => (
-                <div key={id} className="flex gap-3 flex-1" style={{ minHeight: 0 }}>
-                    {[id, `${id}-b`].map((cellId, i) => (
+              {[
+                ['r-bot-tl', Nectar5, 'r-bot-tr', Nectar6],
+                ['r-bot-bl', Nectar7, 'r-bot-br', Nectar8],
+              ].map(([id1, src1, id2, src2], i) => (
+                <div key={i} className="flex gap-3 flex-1" style={{ minHeight: 0 }}>
+                  {[[id1, src1], [id2, src2]].map(([cellId, src]) => (
                     <div
-                        key={cellId}
-                        className="relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer"
-                        style={{
+                      key={cellId}
+                      className="relative rounded-xl overflow-hidden bg-white "
+                      style={{
                         flex: hovered === cellId ? 1.3 : hovered !== null ? 0.85 : 1,
                         transition: 'flex 0.4s cubic-bezier(0.4,0,0.2,1)',
                         minHeight: 0, minWidth: 0,
-                        }}
-                        onMouseEnter={() => setHovered(cellId)}
-                        onMouseLeave={() => setHovered(null)}
+                      }}
+                      onMouseEnter={() => setHovered(cellId)}
+                      onMouseLeave={() => setHovered(null)}
                     >
-                        <img src={i === 0 ? src : Nectar6} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                      <img src={src} alt="" className="absolute inset-0 w-full h-full object-contain" />
                     </div>
-                    ))}
+                  ))}
                 </div>
-
-            ))}
+              ))}
             </div>
 
           </div>

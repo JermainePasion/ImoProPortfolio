@@ -22,7 +22,7 @@ const Graphics = () => {
 
           {/* Left column — 1 big image */}
           <div
-            className="relative rounded-xl overflow-hidden bg-gray-200 flex-shrink-0 cursor-pointer"
+            className="relative rounded-xl overflow-hidden bg-white flex-shrink-0 cursor-pointer"
             style={{
               flex: hovered === "left" ? "1.6" : hovered !== null ? "0.6" : "0.7",
               transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
@@ -89,29 +89,31 @@ const Graphics = () => {
             </div>
             
 
-          <div className="flex flex-col gap-3" style={{ flex: 1 }}>
+          <div className="flex flex-col gap-3 cursor-pointer object-contain" style={{ flex: 1 }}>
             {[
-              { id: "r1c1", img: Nectar, description:"product design" },
-              { id: "r2c1", img: Spectacolar, description:"merchandise" },
+              { id: "r1c1", img: Nectar, description: "product design", link: "/product-design" },
+              { id: "r2c1", img: Spectacolar, description: "merchandise", link: "/merchandise" },
             ].map((item) => (
               <div
                 key={item.id}
-                className="relative rounded-xl overflow-hidden bg-gray-200"
+                className="relative rounded-xl overflow-hidden bg-white"
                 style={{
                   flex: hovered === item.id ? 2 : 1,
                   transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
                   minHeight: 0,
                 }}
                 onMouseEnter={() => setHovered(item.id)}
-                onClick={() => navigate('/product-design')}
                 onMouseLeave={() => setHovered(null)}
+                onClick={() => navigate(item.link)}
               >
                 <img
                   src={item.img}
                   alt="poster"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                <p className="absolute bottom-2 left-3 text-xs text-black italic">{item.description}</p>
+                <p className="absolute bottom-2 left-3 text-xs text-black italic">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>
