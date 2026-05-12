@@ -8,6 +8,7 @@ import VisDev from './screens/VisDev'
 import Graphics from './screens/Graphics'
 import Posters from './screens/Posters'
 import ProductDesign from './screens/ProductDesign'
+import Merchandise from './screens/Merchandise'
 
 const FADE_MS = 300
 
@@ -88,6 +89,7 @@ const App = () => {
       <Route path="/" element={<MainLayout />} />
       <Route path="/posters" element={<SubPageLayout><Posters /></SubPageLayout>} />
       <Route path="/product-design" element={<SubPageLayout><ProductDesign /></SubPageLayout>} />
+      <Route path="/merchandise" element={<SubPageLayout><Merchandise /></SubPageLayout>} />
     </Routes>
   )
 }
