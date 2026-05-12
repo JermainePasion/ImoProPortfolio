@@ -10,6 +10,7 @@ import Posters from './screens/Posters'
 import ProductDesign from './screens/ProductDesign'
 import Merchandise from './screens/Merchandise'
 import Logos from './screens/Logos'
+import Work from './screens/Work'
 
 const FADE_MS = 300
 
@@ -44,12 +45,12 @@ const MainLayout = () => {
       const atBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 5
       const atTop = scrollable.scrollTop <= 5
 
-      if (e.deltaY > 30 && atBottom) changePage(Math.min(page + 1, 3))
+      if (e.deltaY > 30 && atBottom) changePage(Math.min(page + 1, screens.length - 1))
       if (e.deltaY < -30 && atTop) changePage(Math.max(page - 1, 0))
       return
     }
 
-    if (e.deltaY > 30) changePage(Math.min(page + 1, 3))
+    if (e.deltaY > 30) changePage(Math.min(page + 1, screens.length - 1))
     if (e.deltaY < -30) changePage(Math.max(page - 1, 0))
   }
   const handleTouchStart = (e) => {
@@ -73,7 +74,7 @@ const MainLayout = () => {
     if (diff < -40) changePage(Math.max(page - 1, 0))
   }
 
-  const screens = [Home, Films, VisDev, Graphics]
+  const screens = [Home, Films, VisDev, Graphics, Work]
   const Screen = screens[displayedPage]
 
   return (
