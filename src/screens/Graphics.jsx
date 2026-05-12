@@ -12,46 +12,42 @@ import { useNavigate } from 'react-router-dom'
 const Graphics = () => {
   const [hovered, setHovered] = useState(null)
   const navigate = useNavigate()
- 
 
   return (
     <div className="absolute inset-0 overflow-y-auto">
-      <div className="px-8 md:pl-80 md:pr-16 py-8 w-full min-h-full flex flex-col">
+      <div className="px-4 md:pl-80 md:pr-16 py-6 md:py-8 w-full min-h-full flex flex-col">
 
-        <div className="flex gap-3 w-full" style={{ minHeight: '75vh' }}>
+        <div className="flex flex-col md:flex-row gap-3 w-full" style={{ minHeight: '60vh' }}>
 
           {/* Left column — 1 big image */}
           <div
-            className="relative rounded-xl overflow-hidden bg-white flex-shrink-0 cursor-pointer"
+            className="relative rounded-xl overflow-hidden bg-white cursor-pointer"
             style={{
               flex: hovered === "left" ? "1.6" : hovered !== null ? "0.6" : "0.7",
               transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
               minWidth: "50px",
+              minHeight: '200px',
             }}
             onMouseEnter={() => setHovered("left")}
             onClick={() => navigate('/posters')}
             onMouseLeave={() => setHovered(null)}
           >
-            <img
-              src={Sombr}
-              alt="poster"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+            <img src={Sombr} alt="poster" className="absolute inset-0 w-full h-full object-cover" />
             <p className="absolute bottom-2 left-3 text-xs text-black italic">posters</p>
           </div>
 
-          {/* Right column — 3 rows × 2 images */}
+          {/* Right column */}
           <div className="flex flex-col gap-3" style={{ flex: hovered === 'left' ? '0.8' : '1', transition: 'flex 0.4s cubic-bezier(0.4,0,0.2,1)' }}>
-  
+
             {/* Row 1 — 2 small images */}
-            <div className="flex gap-3" style={{ flex: 1 }}>
+            <div className="flex gap-3" style={{ flex: 1, minHeight: '120px' }}>
               {[['r0c0', ChappellRoan, "posters"], ['r0c1', Cans, "mockups"]].map(([id, src, description]) => (
                 <div
                   key={id}
                   className="relative rounded-xl overflow-hidden bg-gray-200"
                   style={{
                     flex: hovered === id ? '1.5' : (hovered && hovered !== 'left' && hovered !== id) ? '0.6' : '1',
-                    transition: 'flex 0.4s cubic-bezier(0.4,0,0.2,1)', 
+                    transition: 'flex 0.4s cubic-bezier(0.4,0,0.2,1)',
                   }}
                   onMouseEnter={() => setHovered(id)}
                   onMouseLeave={() => setHovered(null)}
@@ -62,103 +58,82 @@ const Graphics = () => {
               ))}
             </div>
 
-          {/* Rows 2–3 — tall left image + 2 stacked right */}
-          <div className="flex gap-3" style={{ flex: 2 }}>
+            {/* Rows 2–3 — tall left image + 2 stacked columns */}
+            <div className="flex gap-3" style={{ flex: 2, minHeight: '200px' }}>
 
-            {/* Tall spanning image */}
-            <div
-              className="relative rounded-xl overflow-hidden bg-gray-200"
-              style={{
-                flex:
-                  hovered === "tall"
-                    ? "1.5"
-                    : hovered && hovered !== "left" && hovered !== "tall"
-                    ? "0.6"
-                    : "1",
-                transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
-              }}
-              onMouseEnter={() => setHovered("tall")}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <img
-                src={Bea}
-                alt="poster"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <p className="absolute bottom-2 left-3 text-xs text-black italic">invitations</p>
-            </div>
-            
-
-          <div className="flex flex-col gap-3 cursor-pointer object-contain" style={{ flex: 1 }}>
-            {[
-              { id: "r1c1", img: Nectar, description: "product design", link: "/product-design" },
-              { id: "r2c1", img: Spectacolar, description: "merchandise", link: "/merchandise" },
-            ].map((item) => (
+              {/* Tall spanning image */}
               <div
-                key={item.id}
-                className="relative rounded-xl overflow-hidden bg-white"
-                style={{
-                  flex: hovered === item.id ? 2 : 1,
-                  transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
-                  minHeight: 0,
-                }}
-                onMouseEnter={() => setHovered(item.id)}
-                onMouseLeave={() => setHovered(null)}
-                onClick={() => navigate(item.link)}
-              >
-                <img
-                  src={item.img}
-                  alt="poster"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <p className="absolute bottom-2 left-3 text-xs text-black italic">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* second stack */}
-          <div className="flex flex-col gap-3" style={{ flex: 1 }}>
-            {[
-              { id: "r1c2", img: CoconutLogo, label: "image 1" },
-              { id: "r2c2", img: CoconutLogo2, label: "image 2" },
-            ].map((item) => (
-              <div
-                key={item.id}
                 className="relative rounded-xl overflow-hidden bg-gray-200"
                 style={{
-                  flex: hovered === item.id ? 2 : 1,
+                  flex: hovered === "tall" ? "1.5" : hovered && hovered !== "left" && hovered !== "tall" ? "0.6" : "1",
                   transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
-                  minHeight: 0,
                 }}
-                onMouseEnter={() => setHovered(item.id)}
+                onMouseEnter={() => setHovered("tall")}
                 onMouseLeave={() => setHovered(null)}
               >
-                <img
-                  src={item.img}
-                  alt="poster"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <p className="absolute bottom-2 left-3 text-xs text-black italic">
-                  logos
-                </p>
+                <img src={Bea} alt="poster" className="absolute inset-0 w-full h-full object-cover" />
+                <p className="absolute bottom-2 left-3 text-xs text-black italic">invitations</p>
               </div>
-            ))}
-          </div>
 
-          </div>
+              {/* Middle stack */}
+              <div className="flex flex-col gap-3" style={{ flex: 1 }}>
+                {[
+                  { id: "r1c1", img: Nectar, description: "product design", link: "/product-design" },
+                  { id: "r2c1", img: Spectacolar, description: "merchandise", link: "/merchandise" },
+                ].map((item) => (
+                  <div
+                    key={item.id}
+                    className="relative rounded-xl overflow-hidden bg-white cursor-pointer"
+                    style={{
+                      flex: hovered === item.id ? 2 : 1,
+                      transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
+                      minHeight: 0,
+                    }}
+                    onMouseEnter={() => setHovered(item.id)}
+                    onMouseLeave={() => setHovered(null)}
+                    onClick={() => navigate(item.link)}
+                  >
+                    <img src={item.img} alt="poster" className="absolute inset-0 w-full h-full object-cover" />
+                    <p className="absolute bottom-2 left-3 text-xs text-black italic">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Logo stack */}
+              <div className="flex flex-col gap-3" style={{ flex: 1 }}>
+                {[
+                  { id: "r1c2", img: CoconutLogo },
+                  { id: "r2c2", img: CoconutLogo2 },
+                ].map((item) => (
+                  <div
+                    key={item.id}
+                    className="relative rounded-xl overflow-hidden bg-gray-200"
+                    style={{
+                      flex: hovered === item.id ? 2 : 1,
+                      transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
+                      minHeight: 0,
+                    }}
+                    onMouseEnter={() => setHovered(item.id)}
+                    onMouseLeave={() => setHovered(null)}
+                  >
+                    <img src={item.img} alt="logo" className="absolute inset-0 w-full h-full object-cover" />
+                    <p className="absolute bottom-2 left-3 text-xs text-black italic">logos</p>
+                  </div>
+                ))}
+              </div>
+
+            </div>
 
           </div>
 
         </div>
 
-        <p
-          className="font-extrabold text-[#313131] text-right mt-4 select-none"
-          style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)' }}
+      <p
+          className="font-extrabold text-[#313131] text-right mt-6 md:mt-4 select-none leading-none"
+          style={{ fontSize: "clamp(2rem, 6vw, 5.5rem)" }}
         >
           graphics.
-        </p>
+      </p>
       </div>
     </div>
   )
