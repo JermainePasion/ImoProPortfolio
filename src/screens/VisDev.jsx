@@ -9,7 +9,7 @@ const cards = [
 
 const VisDev = () => {
   return (
-    <div className="absolute inset-0 overflow-y-auto">
+    <div className="absolute inset-0 overflow-y-auto" >
       <div className="px-8 md:pl-80 md:pr-16 py-8 w-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {cards.map((card) => (

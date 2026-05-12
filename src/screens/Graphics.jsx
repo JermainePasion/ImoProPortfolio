@@ -114,6 +114,7 @@ const Graphics = () => {
                       minHeight: 0,
                     }}
                     onMouseEnter={() => setHovered(item.id)}
+                    onClick={() => navigate('/logos')}
                     onMouseLeave={() => setHovered(null)}
                   >
                     <img src={item.img} alt="logo" className="absolute inset-0 w-full h-full object-cover" />

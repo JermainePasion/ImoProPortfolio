@@ -9,6 +9,7 @@ import Graphics from './screens/Graphics'
 import Posters from './screens/Posters'
 import ProductDesign from './screens/ProductDesign'
 import Merchandise from './screens/Merchandise'
+import Logos from './screens/Logos'
 
 const FADE_MS = 300
 
@@ -37,16 +38,37 @@ const MainLayout = () => {
   }
 
   const handleWheel = (e) => {
+    const scrollable = e.target.closest('.overflow-y-auto')
+
+    if (scrollable && scrollable.scrollHeight > scrollable.clientHeight) {
+      const atBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 5
+      const atTop = scrollable.scrollTop <= 5
+
+      if (e.deltaY > 30 && atBottom) changePage(Math.min(page + 1, 3))
+      if (e.deltaY < -30 && atTop) changePage(Math.max(page - 1, 0))
+      return
+    }
+
     if (e.deltaY > 30) changePage(Math.min(page + 1, 3))
     if (e.deltaY < -30) changePage(Math.max(page - 1, 0))
   }
-
   const handleTouchStart = (e) => {
     touchStartY.current = e.touches[0].clientY
   }
 
   const handleTouchEnd = (e) => {
     const diff = touchStartY.current - e.changedTouches[0].clientY
+    const scrollable = e.target.closest('.overflow-y-auto')
+
+    if (scrollable) {
+      const atBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 5
+      const atTop = scrollable.scrollTop <= 5
+
+      if (diff > 40 && atBottom) changePage(Math.min(page + 1, 3))
+      if (diff < -40 && atTop) changePage(Math.max(page - 1, 0))
+      return
+    }
+
     if (diff > 40) changePage(Math.min(page + 1, 3))
     if (diff < -40) changePage(Math.max(page - 1, 0))
   }
@@ -90,6 +112,7 @@ const App = () => {
       <Route path="/posters" element={<SubPageLayout><Posters /></SubPageLayout>} />
       <Route path="/product-design" element={<SubPageLayout><ProductDesign /></SubPageLayout>} />
       <Route path="/merchandise" element={<SubPageLayout><Merchandise /></SubPageLayout>} />
+      <Route path="/logos" element={<SubPageLayout><Logos /></SubPageLayout>} />
     </Routes>
   )
 }
