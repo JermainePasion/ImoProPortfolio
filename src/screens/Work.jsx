@@ -23,7 +23,6 @@ const Work = () => {
 
         <div className="flex flex-col md:flex-row gap-3 flex-1 min-h-0" style={{ maxHeight: '75vh' }}>
 
-          {/* Col 1 — big image */}
           <div
             className="relative rounded-xl overflow-hidden bg-white min-h-40 md:min-h-0"
             style={{
@@ -37,7 +36,6 @@ const Work = () => {
              <img src={Promopub} alt="" className="absolute inset-0 w-full h-full object-contain" /> 
           </div>
 
-          {/* Col 2 — 2 rows */}
          <div
             className="flex flex-col gap-3 min-h-0"
             style={{
@@ -74,7 +72,7 @@ const Work = () => {
                 </div>
             ))}
             </div>
-          {/* Col 3 — big image */}
+
           <div
             className="relative rounded-xl overflow-hidden bg-white cursor-pointer min-h-40 md:min-h-0"
             style={{
