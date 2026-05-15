@@ -19,7 +19,6 @@ const Graphics = () => {
 
         <div className="flex flex-col md:flex-row gap-3 w-full" style={{ minHeight: '60vh' }}>
 
-          {/* Left column — 1 big image */}
           <div
             className="relative rounded-xl overflow-hidden bg-white cursor-pointer"
             style={{
@@ -36,7 +35,6 @@ const Graphics = () => {
             <p className="absolute bottom-2 left-3 text-xs text-black italic">posters</p>
           </div>
 
-          {/* Right column */}
           <div className="flex flex-col gap-3" style={{ flex: hovered === 'left' ? '0.8' : '1', transition: 'flex 0.4s cubic-bezier(0.4,0,0.2,1)' }}>
 
             {/* Row 1 — 2 small images */}
@@ -61,7 +59,6 @@ const Graphics = () => {
             {/* Rows 2–3 — tall left image + 2 stacked columns */}
             <div className="flex gap-3" style={{ flex: 2, minHeight: '200px' }}>
 
-              {/* Tall spanning image */}
               <div
                 className="relative rounded-xl overflow-hidden bg-gray-200"
                 style={{
@@ -99,7 +96,6 @@ const Graphics = () => {
                 ))}
               </div>
 
-              {/* Logo stack */}
               <div className="flex flex-col gap-3" style={{ flex: 1 }}>
                 {[
                   { id: "r1c2", img: CoconutLogo },
