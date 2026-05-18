@@ -19,25 +19,44 @@ const Merchandise = () => {
   const [hovered, setHovered] = useState(null)
   const navigate = useNavigate()
 
+  const allImages = [
+    Guac,
+    Taco,
+    Birria,
+    Burrito,
+    Mais,
+    Csm1,
+    Csm2,
+    Csm3,
+    Csm4,
+    Csm5,
+    Csm6,
+    Csm7,
+    Csm8,
+    Csm9,
+  ]
+
   const Cell = ({ id, src }) => (
-        <div
-            className="relative rounded-xl overflow-hidden bg-white cursor-pointer flex-1 min-w-0 min-h-0 transition-transform duration-300 ease-in-out"
-            onMouseEnter={() => setHovered(id)}
-            onMouseLeave={() => setHovered(null)}
-            style={{
-            transform:
-                hovered === id ? "scale(1.05)" : hovered !== null ? "scale(0.97)" : "scale(1)",
-            }}
-        >
-            {src && (
-            <img
-                src={src}
-                alt={id}
-                className="absolute inset-0 w-full h-full object-contain p-2"
-            />
-            )}
-        </div>
-    )
+    <div
+      className="relative rounded-xl overflow-hidden bg-white cursor-pointer flex-1 min-w-0 min-h-0 transition-transform duration-300 ease-in-out"
+      onMouseEnter={() => setHovered(id)}
+      onMouseLeave={() => setHovered(null)}
+      style={{
+        transform:
+          hovered === id
+            ? "scale(1.05)"
+            : hovered !== null
+            ? "scale(0.97)"
+            : "scale(1)",
+      }}
+    >
+      <img
+        src={src}
+        alt={id}
+        className="absolute inset-0 w-full h-full object-contain p-2"
+      />
+    </div>
+  )
 
   const images = {
     ll1: Guac,
@@ -57,18 +76,36 @@ const Merchandise = () => {
   }
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      <div className="px-4 sm:px-8 md:pl-80 md:pr-16 py-6 sm:py-8 w-full h-full flex flex-col">
+    <div className="absolute inset-0 overflow-y-auto">
+      <div className="px-4 sm:px-6 md:pl-72 md:pr-12 py-4 w-full min-h-full flex flex-col">
+
         {/* Back Button */}
         <button
           onClick={() => navigate("/", { state: { page: 3 } })}
-          className="text-sm text-gray-500 italic mb-4 text-left hover:text-gray-800 transition-colors"
+          className="text-sm text-gray-500 italic mb-3 text-left hover:text-gray-800 transition-colors"
         >
           ← back
         </button>
 
-        {/* Main Grid */}
-        <div className="flex flex-col md:flex-row gap-4 w-full flex-1 min-h-0">
+        {/* Mobile + Tablet — stacked */}
+        <div className="flex flex-col lg:hidden gap-3">
+          {allImages.map((src, i) => (
+            <div
+              key={i}
+              className="relative rounded-xl overflow-hidden bg-white w-full"
+              style={{ height: "220px" }}
+            >
+              <img
+                src={src}
+                alt=""
+                className="absolute inset-0 w-full h-full object-contain p-2"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop — original layout */}
+        <div className="hidden lg:flex flex-col md:flex-row gap-4 w-full flex-1 min-h-0">
           {/* Left side */}
           <div className="flex flex-col gap-3 flex-1 min-h-0">
             {[
@@ -109,11 +146,12 @@ const Merchandise = () => {
 
         {/* Footer Title */}
         <p
-          className="font-extrabold text-[#313131] text-right mt-4 select-none leading-none"
-          style={{ fontSize: "clamp(2rem, 7vw, 6rem)" }}
+          className="font-extrabold text-[#313131] text-right mt-3 select-none leading-none"
+          style={{ fontSize: "clamp(1.2rem, 3.5vw, 3rem)" }}
         >
           merchandise.
         </p>
+
       </div>
     </div>
   )
