@@ -1,17 +1,23 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Promopub from "../assets/work/promopub.png"
+import GoodLuckBabe from "../assets/illustrations/goodLuckBabe.png"
+import GreenWoman from "../assets/illustrations/greenWoman.jpg"
+import Lay from "../assets/illustrations/lay.png"
+import Whisper from "../assets/illustrations/whisper.png"
+import CollageTwoPicOne from "../assets/illustrations/collageTwoPicOne.png"
+import CollageTwoPicTwo from "../assets/illustrations/collageTwoPicTwo.jpg"
 
 const collages = [
   {
     id: 0,
     layout: "three-col",
-    images: [Promopub, Promopub, Promopub, Promopub],
+    images: [GoodLuckBabe, Whisper, Lay, GreenWoman],
   },
   {
     id: 1,
     layout: "two-col",
-    images: [Promopub, Promopub],
+    images: [CollageTwoPicOne, CollageTwoPicTwo],
   },
 ]
 
@@ -140,7 +146,7 @@ const TwoColLayout = ({ images }) => {
             <img
               src={src}
               alt=""
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-contain"
             />
           </div>
         ))}
@@ -151,7 +157,7 @@ const TwoColLayout = ({ images }) => {
         {images.map((src, i) => (
           <div
             key={i}
-            className="relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer"
+            className="relative rounded-xl overflow-hidden  cursor-pointer"
             style={{
               flex: hovered === i ? 1.3 : hovered !== null ? 0.85 : 1,
               transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
@@ -165,7 +171,7 @@ const TwoColLayout = ({ images }) => {
             <img
               src={src}
               alt=""
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-contain"
             />
           </div>
         ))}
