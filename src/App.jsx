@@ -11,6 +11,7 @@ import ProductDesign from './screens/ProductDesign'
 import Merchandise from './screens/Merchandise'
 import Logos from './screens/Logos'
 import Work from './screens/Work'
+import Illustrations from './screens/Illustrations'
 
 const FADE_MS = 300
 
@@ -65,7 +66,7 @@ const MainLayout = () => {
       const atBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 5
       const atTop = scrollable.scrollTop <= 5
 
-      if (diff > 40 && atBottom) changePage(Math.min(page + 1, 3))
+      if (diff > 40 && atBottom) changePage(Math.min(page + 1, 4))
       if (diff < -40 && atTop) changePage(Math.max(page - 1, 0))
       return
     }
@@ -74,7 +75,7 @@ const MainLayout = () => {
     if (diff < -40) changePage(Math.max(page - 1, 0))
   }
 
-  const screens = [Home, Films, VisDev, Graphics, Work]
+  const screens = [Home, Films, VisDev, Graphics, Work, Illustrations]
   const Screen = screens[displayedPage]
 
   return (
