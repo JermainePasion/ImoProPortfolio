@@ -11,10 +11,10 @@ const Work = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="absolute inset-0 overflow-y-auto">
+    <div className="absolute inset-0 overflow-y-hidden">
       <div className="px-4 md:pl-80 md:pr-16 py-6 w-full min-h-full flex flex-col gap-4">
 
-        <div className="w-full" style={{ minHeight: '70vh' }}>
+        <div className="w-full" style={{ minHeight: '55vh', maxHeight: '55vh' }}>
 
           {/* Mobile — single column */}
           <div className="flex flex-col sm:hidden gap-4">
@@ -27,7 +27,7 @@ const Work = () => {
               <div
                 key={item.id}
                 className="relative rounded-xl overflow-hidden bg-white w-full"
-                style={{ height: '250px' }}
+                style={{ height: '180px' }}
               >
                 <img src={item.img} alt="" className="absolute inset-0 w-full h-full object-cover" />
               </div>
@@ -36,7 +36,7 @@ const Work = () => {
 
           {/* Tablet — 2x2 grid */}
           <div className="hidden sm:flex md:hidden flex-col gap-4">
-            <div className="flex gap-3" style={{ height: '300px' }}>
+            <div className="flex gap-3" style={{ height: '220px' }}>
               <div className="relative rounded-xl overflow-hidden bg-white flex-1">
                 <img src={Promopub} alt="" className="absolute inset-0 w-full h-full object-cover" />
               </div>
@@ -44,7 +44,7 @@ const Work = () => {
                 <img src={Bea} alt="" className="absolute inset-0 w-full h-full object-cover" />
               </div>
             </div>
-            <div className="flex gap-3" style={{ height: '280px' }}>
+            <div className="flex gap-3" style={{ height: '200px' }}>
               <div className="relative rounded-xl overflow-hidden bg-white flex-1">
                 <img src={Compilation} alt="" className="absolute inset-0 w-full h-full object-cover" />
               </div>
@@ -55,7 +55,7 @@ const Work = () => {
           </div>
 
           {/* Desktop — original 3-column */}
-          <div className="hidden md:flex gap-3 h-full" style={{ minHeight: '70vh' }}>
+          <div className="hidden md:flex gap-3 h-full" style={{ minHeight: '50vh', maxHeight: '55vh' }}>
 
             <div
               className="relative rounded-xl overflow-hidden bg-white"
@@ -118,7 +118,7 @@ const Work = () => {
 
         <p
           className="font-extrabold text-[#313131] text-right select-none"
-          style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)' }}
+          style={{ fontSize: 'clamp(2.5rem, 8vw, 7rem)' }}
         >
           work.
         </p>

@@ -17,7 +17,7 @@ const Graphics = () => {
     <div className="absolute inset-0 overflow-y-auto">
       <div className="px-4 md:pl-80 md:pr-16 py-6 md:py-8 w-full min-h-full flex flex-col">
 
-        <div className="flex flex-col md:flex-row gap-3 w-full" style={{ minHeight: '60vh' }}>
+        <div className="flex flex-col md:flex-row gap-3 w-full" style={{ minHeight: '55vh' }}>
 
           <div
             className="relative rounded-xl overflow-hidden bg-white cursor-pointer"
@@ -127,7 +127,7 @@ const Graphics = () => {
 
       <p
           className="font-extrabold text-[#313131] text-right mt-6 md:mt-4 select-none leading-none"
-          style={{ fontSize: "clamp(2rem, 6vw, 5.5rem)" }}
+          style={{ fontSize: "clamp(2rem, 5vw, 5.5rem)" }}
         >
           graphics.
       </p>
