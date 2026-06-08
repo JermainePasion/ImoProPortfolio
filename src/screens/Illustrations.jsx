@@ -15,8 +15,9 @@ import CollageFourPicTwo from "../assets/illustrations/collageFourPicTwo.png"
 import CollageFourPicThree from "../assets/illustrations/collageFourPicThree.png"
 import CollageFourPicFour from "../assets/illustrations/collageFourPicFour.png"
 
-
 const COLLAGE_HEIGHT = '60vh'
+const MOBILE_IMG_HEIGHT = '200px'
+const TABLET_ROW_HEIGHT = '240px'
 
 const collages = [
   { id: 0, layout: "three-col", images: [GoodLuckBabe, Whisper, Lay, GreenWoman] },
@@ -33,13 +34,24 @@ const collages = [
   },
 ]
 
+// Reusable mobile single-column stack
+const MobileStack = ({ images, contain = false }) => (
+  <div className="flex flex-col sm:hidden gap-3">
+    {images.map((src, i) => (
+      <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 w-full" style={{ height: MOBILE_IMG_HEIGHT }}>
+        <img src={src} alt="" className={`absolute inset-0 w-full h-full ${contain ? 'object-contain' : 'object-cover'}`} />
+      </div>
+    ))}
+  </div>
+)
+
 const ThreeColLayout = ({ images }) => {
   const [hovered, setHovered] = useState(null)
 
   const cell = (id, src) => (
     <div
       key={id}
-      className="relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer"
+      className="relative rounded-xl overflow-hidden cursor-pointer"
       style={{
         flex: hovered === id ? 1.3 : hovered !== null ? 0.85 : 1,
         transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
@@ -54,18 +66,11 @@ const ThreeColLayout = ({ images }) => {
 
   return (
     <>
-      {/* Mobile */}
-      <div className="flex flex-col sm:hidden gap-3">
-        {images.map((src, i) => (
-          <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 w-full" style={{ height: '180px' }}>
-            <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
-          </div>
-        ))}
-      </div>
+      <MobileStack images={images} />
 
       {/* Tablet */}
       <div className="hidden sm:flex md:hidden flex-col gap-3">
-        <div className="flex gap-3" style={{ height: '220px' }}>
+        <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
           <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
             <img src={images[0]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
@@ -73,7 +78,7 @@ const ThreeColLayout = ({ images }) => {
             <img src={images[3]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
-        <div className="flex gap-3" style={{ height: '200px' }}>
+        <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
           <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
             <img src={images[1]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
@@ -108,34 +113,18 @@ const TwoColLayout = ({ images }) => {
 
   return (
     <>
-      {/* Mobile */}
-      <div className="flex flex-col sm:hidden gap-3">
-        {images.map((src, i) => (
-          <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 w-full" style={{ height: '180px' }}>
-            <img src={src} alt="" className="absolute inset-0 w-full h-full object-contain" />
-          </div>
-        ))}
-      </div>
+      <MobileStack images={images} contain />
 
       {/* Tablet */}
       <div className="hidden sm:flex md:hidden gap-3" style={{ height: '420px' }}>
         {images.map((src, i) => (
-          <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
-            <img src={src} alt="" className="absolute inset-0 w-full h-full object-contain" />
-          </div>
-        ))}
-      </div>
-
-      {/* Desktop */}
-      <div className="hidden md:flex gap-3" style={{ height: COLLAGE_HEIGHT }}>
-        {images.map((src, i) => (
           <div
             key={i}
-            className="relative rounded-xl overflow-hidden cursor-pointer"
+            className="relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer"
             style={{
               flex: hovered === i ? 1.3 : hovered !== null ? 0.85 : 1,
               transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
-              minWidth: 0, height: "100%",
+              minWidth: 0,
             }}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
@@ -143,6 +132,38 @@ const TwoColLayout = ({ images }) => {
             <img src={src} alt="" className="absolute inset-0 w-full h-full object-contain" />
           </div>
         ))}
+      </div>
+
+      {/* Desktop */}
+      <div className="hidden md:flex gap-3" style={{ height: COLLAGE_HEIGHT }}>
+        {images.map((src, i) => {
+          const isHovered = hovered === i
+
+          return (
+            <div
+              key={i}
+              className="relative rounded-xl overflow-hidden cursor-pointer"
+              style={{
+                flex: isHovered ? 1.4 : hovered !== null ? 0.8 : 1,
+                transition: "flex 0.45s cubic-bezier(0.4,0,0.2,1)",
+                minWidth: 0,
+                height: "100%",
+              }}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <img
+                src={src}
+                alt=""
+                className="absolute inset-0 w-full h-full object-contain"
+                style={{
+                  transform: isHovered ? "scale(1.03)" : "scale(1)",
+                  transition: "transform 0.45s cubic-bezier(0.4,0,0.2,1)",
+                }}
+              />
+            </div>
+          )
+        })}
       </div>
     </>
   )
@@ -169,18 +190,11 @@ const ThreeColStackedLayout = ({ images }) => {
 
   return (
     <>
-      {/* Mobile */}
-      <div className="flex flex-col sm:hidden gap-3">
-        {images.map((src, i) => (
-          <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 w-full" style={{ height: '180px' }}>
-            <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
-          </div>
-        ))}
-      </div>
+      <MobileStack images={images} />
 
       {/* Tablet */}
       <div className="hidden sm:flex md:hidden flex-col gap-3">
-        <div className="flex gap-3" style={{ height: '220px' }}>
+        <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
           <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
             <img src={images[0]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
@@ -188,7 +202,7 @@ const ThreeColStackedLayout = ({ images }) => {
             <img src={images[1]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
-        <div className="flex gap-3" style={{ height: '200px' }}>
+        <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
           <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
             <img src={images[3]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
@@ -235,14 +249,14 @@ const FourColLayout = ({ images }) => {
     <>
       {/* Mobile — 2x2 */}
       <div className="flex flex-col sm:hidden gap-3">
-        <div className="flex gap-3" style={{ height: '220px' }}>
+        <div className="flex gap-3" style={{ height: MOBILE_IMG_HEIGHT }}>
           {images.slice(0, 2).map((src, i) => (
             <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
               <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           ))}
         </div>
-        <div className="flex gap-3" style={{ height: '220px' }}>
+        <div className="flex gap-3" style={{ height: MOBILE_IMG_HEIGHT }}>
           {images.slice(2, 4).map((src, i) => (
             <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
               <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
@@ -253,14 +267,14 @@ const FourColLayout = ({ images }) => {
 
       {/* Tablet — 2x2 */}
       <div className="hidden sm:flex md:hidden flex-col gap-3">
-        <div className="flex gap-3" style={{ height: '240px' }}>
+        <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
           {images.slice(0, 2).map((src, i) => (
             <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
               <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           ))}
         </div>
-        <div className="flex gap-3" style={{ height: '240px' }}>
+        <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
           {images.slice(2, 4).map((src, i) => (
             <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
               <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
@@ -310,7 +324,7 @@ const Illustrations = () => {
   const collage = collages[current]
 
   return (
-    <div className="absolute inset-0 overflow-y-hidden">
+    <div className="absolute inset-0 overflow-y-auto">
       <div className="px-4 md:pl-80 md:pr-16 py-6 w-full min-h-full flex flex-col gap-1">
 
         <div className="flex items-center gap-2">
