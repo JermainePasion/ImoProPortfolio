@@ -10,7 +10,7 @@ const Logos = () => {
       <div className="px-3 sm:px-4 md:pl-72 md:pr-12 py-3 md:py-4 w-full min-h-[70vh] flex flex-col">
 
         <button
-          onClick={() => navigate('/', { state: { page: 3 } })}
+          onClick={() => navigate('/', { state: { page: 2 } })}
           className="text-sm text-gray-500 italic mb-4 text-left hover:text-gray-800 transition-colors"
         >
           ← back

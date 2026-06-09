@@ -20,7 +20,7 @@ const ProductDesign = () => {
       <div className="px-4 sm:px-6 md:pl-72 md:pr-12 py-4 w-full min-h-full flex flex-col">
 
         <button
-          onClick={() => navigate('/', { state: { page: 3 } })}
+          onClick={() => navigate('/', { state: { page: 2 } })}
           className="text-sm text-gray-500 italic mb-3 text-left hover:text-gray-800 transition-colors"
         >
           ← back

@@ -62,12 +62,12 @@ const Films = () => {
       <p
         className="fixed z-50 pointer-events-none select-none font-extrabold text-[#313131] leading-none"
         style={{
-          fontSize: "clamp(1.6rem, 5vw, 4rem)",
+          fontSize: "clamp(1.6rem, 5vw, 5rem)",
           bottom: "clamp(0.6rem, 2.5vw, 2rem)",
           right: "clamp(0.6rem, 2.5vw, 3rem)",
         }}
       >
-        Films.
+        films.
       </p>
     </div>
   )

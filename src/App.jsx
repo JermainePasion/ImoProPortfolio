@@ -75,7 +75,7 @@ const MainLayout = () => {
     if (diff < -40) changePage(Math.max(page - 1, 0))
   }
 
-  const screens = [Home, Films, VisDev, Graphics, Work, Illustrations]
+  const screens = [Home, Films, Graphics, Work, Illustrations]
   const Screen = screens[displayedPage]
 
   return (
@@ -85,7 +85,7 @@ const MainLayout = () => {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <Navbar />
+      <Navbar onNavigate={changePage} />
       <div
         className="relative flex-1 overflow-hidden"
         style={{ opacity, transition: `opacity ${FADE_MS}ms ease` }}

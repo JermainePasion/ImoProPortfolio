@@ -81,7 +81,7 @@ const Merchandise = () => {
 
         {/* Back Button */}
         <button
-          onClick={() => navigate("/", { state: { page: 3 } })}
+          onClick={() => navigate("/", { state: { page: 2 } })}
           className="text-sm text-gray-500 italic mb-3 text-left hover:text-gray-800 transition-colors"
         >
           ← back
