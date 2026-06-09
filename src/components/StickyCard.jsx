@@ -18,6 +18,7 @@ const StickyCard = ({ visible }) => {
         className={`
           fixed top-45 left-0 w-60 h-120
           rounded-r-3xl shadow-xl border-r border-gray-100
+          bg-[#F5F0D8]
           flex flex-col p-4 gap-3
           transition-all duration-700 ease-in-out
           overflow-visible
@@ -26,7 +27,6 @@ const StickyCard = ({ visible }) => {
             ? 'md:translate-x-0 ' + (mobileOpen ? 'translate-x-0' : '-translate-x-full')
             : '-translate-x-full opacity-0 pointer-events-none'}
         `}
-        style={{ transitionDelay: visible ? '150ms' : '0ms' }}
       >
 
         <div

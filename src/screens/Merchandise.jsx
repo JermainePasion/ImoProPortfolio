@@ -36,27 +36,39 @@ const Merchandise = () => {
     Csm9,
   ]
 
-  const Cell = ({ id, src }) => (
-    <div
-      className="relative rounded-xl overflow-hidden bg-white cursor-pointer flex-1 min-w-0 min-h-0 transition-transform duration-300 ease-in-out"
-      onMouseEnter={() => setHovered(id)}
-      onMouseLeave={() => setHovered(null)}
-      style={{
-        transform:
-          hovered === id
-            ? "scale(1.05)"
-            : hovered !== null
-            ? "scale(0.97)"
-            : "scale(1)",
-      }}
-    >
-      <img
-        src={src}
-        alt={id}
-        className="absolute inset-0 w-full h-full object-contain p-2"
-      />
-    </div>
-  )
+  const Cell = ({ id, src }) => {
+    const isHovered = hovered === id
+    const isDimmed = hovered !== null && hovered !== id
+
+    return (
+      <div
+        className="relative rounded-xl overflow-hidden bg-white cursor-pointer flex-1 min-w-0 min-h-0"
+        onMouseEnter={() => setHovered(id)}
+        onMouseLeave={() => setHovered(null)}
+        style={{
+          transition:
+            "transform 500ms cubic-bezier(0.22,1,0.36,1), opacity 500ms cubic-bezier(0.22,1,0.36,1)",
+          transform: isHovered
+            ? "translateY(-6px)"
+            : "translateY(0)",
+          opacity: isDimmed ? 0.7 : 1,
+        }}
+      >
+        <img
+          src={src}
+          alt={id}
+          className="absolute inset-0 w-full h-full object-contain p-2"
+          style={{
+            transition:
+              "transform 500ms cubic-bezier(0.22,1,0.36,1)",
+            transform: isHovered
+              ? "scale(1.08)"
+              : "scale(1)",
+          }}
+        />
+      </div>
+    )
+  }
 
   const images = {
     ll1: Guac,
