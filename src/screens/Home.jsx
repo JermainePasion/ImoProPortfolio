@@ -43,19 +43,19 @@ const Home = ({ scrolledAway }) => {
               src={landingPhoto}
             />
             <div className="flex justify-center gap-5 md:gap-20 w-full mt-3">
-              <a href="#" className="social-icon">
+              <a href="https://www.facebook.com/emowwwwwwww" className="social-icon" target="_blank">
                 <LuFacebook size={30} />
               </a>
-              <a href="#" className="social-icon">
+              <a href="https://x.com/1mo6en" className="social-icon" target="_blank">
                 <FaSquareXTwitter size={30} />
               </a>
-              <a href="mailto:your@email.com" className="social-icon">
+              <a href="mailto:your@email.com" className="social-icon" target="_blank">
                 <MdOutlineEmail size={30} />
               </a>
-              <a href="#" className="social-icon">
+              <a href="https://www.linkedin.com/in/imogen-dasha-ignacio/" className="social-icon" target="_blank">
                 <LuLinkedin size={30} />
               </a>
-              <a href="#" className="social-icon">
+              <a href="https://www.instagram.com/immi._ily/" className="social-icon" target="_blank">
                 <SlSocialInstagram size={30} />
               </a>
             </div>
