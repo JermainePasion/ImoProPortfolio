@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import Promopub from '../assets/work/promopub.png'
+import Promopub from '../assets/work/promoPub.png'
 import Compilation from '../assets/work/compilation.png'
 import Respondents from '../assets/work/respondents.png'
 import Bea from '../assets/work/bea.png'
