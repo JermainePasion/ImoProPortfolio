@@ -55,7 +55,7 @@ const Home = ({ scrolledAway }) => {
               <a href="https://www.linkedin.com/in/imogen-dasha-ignacio/" className="social-icon" target="_blank">
                 <LuLinkedin size={30} />
               </a>
-              <a href="https://www.instagram.com/immi._ily/" className="social-icon" target="_blank">
+              <a href="https://www.instagram.com/1mo6en_n/" className="social-icon" target="_blank">
                 <SlSocialInstagram size={30} />
               </a>
             </div>
