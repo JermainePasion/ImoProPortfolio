@@ -35,15 +35,39 @@ const collages = [
 ]
 
 // Reusable mobile single-column stack
-const MobileStack = ({ images, contain = false }) => (
-  <div className="flex flex-col sm:hidden gap-3">
-    {images.map((src, i) => (
-      <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 w-full" style={{ height: MOBILE_IMG_HEIGHT }}>
-        <img src={src} alt="" className={`absolute inset-0 w-full h-full ${contain ? 'object-contain' : 'object-cover'}`} />
-      </div>
-    ))}
-  </div>
-)
+const MobileStack = ({ images, contain = false }) => {
+  const [active, setActive] = useState(null)
+
+  return (
+    <div className="flex flex-col sm:hidden gap-3">
+      {images.map((src, i) => (
+        <div
+          key={i}
+          onClick={() => setActive(active === i ? null : i)}
+          className="relative rounded-xl overflow-hidden bg-gray-200 w-full cursor-pointer"
+          style={{
+            height: active === i ? "260px" : MOBILE_IMG_HEIGHT,
+            transform: active === i ? "translateY(-4px)" : "translateY(0)",
+            opacity: active !== null && active !== i ? 0.7 : 1,
+            transition: "all 0.4s cubic-bezier(0.22,1,0.36,1)",
+          }}
+        >
+          <img
+            src={src}
+            alt=""
+            className={`absolute inset-0 w-full h-full ${
+              contain ? "object-contain" : "object-cover"
+            }`}
+            style={{
+              transform: active === i ? "scale(1.05)" : "scale(1)",
+              transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1)",
+            }}
+          />
+        </div>
+      ))}
+    </div>
+  )
+}
 
 const ThreeColLayout = ({ images }) => {
   const [hovered, setHovered] = useState(null)
@@ -120,7 +144,7 @@ const TwoColLayout = ({ images }) => {
         {images.map((src, i) => (
           <div
             key={i}
-            className="relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer"
+            className="relative rounded-xl overflow-hidden  cursor-pointer"
             style={{
               flex: hovered === i ? 1.3 : hovered !== null ? 0.85 : 1,
               transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
@@ -155,7 +179,7 @@ const TwoColLayout = ({ images }) => {
               <img
                 src={src}
                 alt=""
-                className="absolute inset-0 w-full h-full object-contain"
+                className="absolute inset-0 w-full h-full  object-contain"
                 style={{
                   transform: isHovered ? "scale(1.03)" : "scale(1)",
                   transition: "transform 0.45s cubic-bezier(0.4,0,0.2,1)",
