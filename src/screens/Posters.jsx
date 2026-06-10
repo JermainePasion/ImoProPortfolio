@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Sombr from '../assets/graphics/Sombr.png'
+import Sombr from '../assets/graphics/Sombr.webp'
 import Poster1 from '../assets/posters/Poster1.png'
 import Poster2 from '../assets/posters/Poster2.png'
 

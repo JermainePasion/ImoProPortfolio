@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import CoconutLogo from '../assets/graphics/CoconutLogo.png'
+import CoconutLogo from '../assets/graphics/CoconutLogo.webp'
 
 const Logos = () => {
   const navigate = useNavigate()
