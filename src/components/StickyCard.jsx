@@ -62,11 +62,21 @@ const StickyCard = ({ visible }) => {
           </div>
 
           <div className="flex items-center justify-center gap-4">
-            <LuFacebook size={16} className="hover:text-[#313131] cursor-pointer transition-colors" />
-            <FaSquareXTwitter size={16} className="hover:text-[#313131] cursor-pointer transition-colors" />
-            <MdOutlineEmail size={16} className="hover:text-[#313131] cursor-pointer transition-colors" />
-            <LuLinkedin size={16} className="hover:text-[#313131] cursor-pointer transition-colors" />
-            <SlSocialInstagram size={16} className="hover:text-[#313131] cursor-pointer transition-colors" />
+            <a href="https://www.facebook.com/emowwwwwwww" className="social-icon" target="_blank">
+              <LuFacebook size={16} className="hover:text-[#313131] cursor-pointer transition-colors" />
+            </a>
+            <a href="https://x.com/1mo6en" className="social-icon" target="_blank">
+              <FaSquareXTwitter size={16} className="hover:text-[#313131] cursor-pointer transition-colors" />
+            </a>
+            <a href="mailto:your@email.com" className="social-icon" target="_blank">
+              <MdOutlineEmail size={16} className="hover:text-[#313131] cursor-pointer transition-colors" />
+            </a>
+            <a href="https://www.linkedin.com/in/imogen-dasha-ignacio/" className="social-icon" target="_blank">
+              <LuLinkedin size={16} className="hover:text-[#313131] cursor-pointer transition-colors" />
+            </a>
+            <a href="https://www.instagram.com/1mo6en_n/" className="social-icon" target="_blank">
+              <SlSocialInstagram size={16} className="hover:text-[#313131] cursor-pointer transition-colors" />
+            </a>
           </div>
         </div>
       </div>

@@ -32,7 +32,8 @@ const Home = ({ scrolledAway }) => {
               <b>imo</b> ignacio
             </h2>
             <p className="font-bold text-[#313131] text-sm sm:text-base md:text-lg -mt-1 sm:-mt-2 md:-mt-3">
-              creative illustrator &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              creative illustrator
+              <span className="inline-block w-6 sm:w-10 md:w-16 lg:w-20" />
               and graphic designer
             </p>
           </section>
