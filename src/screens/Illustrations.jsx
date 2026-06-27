@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import GoodLuckBabe from "../assets/illustrations/goodLuckBabe.webp"
 import GreenWoman from "../assets/illustrations/greenWoman.webp"
 import Lay from "../assets/illustrations/lay.webp"
@@ -15,9 +15,13 @@ import CollageFourPicTwo from "../assets/illustrations/collageFourPicTwo.webp"
 import CollageFourPicThree from "../assets/illustrations/collageFourPicThree.webp"
 import CollageFourPicFour from "../assets/illustrations/collageFourPicFour.webp"
 
-const COLLAGE_HEIGHT = '60vh'
+const COLLAGE_HEIGHT = '70vh'
 const MOBILE_IMG_HEIGHT = '200px'
 const TABLET_ROW_HEIGHT = '240px'
+
+// Hover flex values (softened for a gentler expand/shrink)
+const EXPAND = 1.15
+const SHRINK = 0.9
 
 const collages = [
   { id: 0, layout: "three-col", images: [GoodLuckBabe, Whisper, Lay, GreenWoman] },
@@ -34,42 +38,65 @@ const collages = [
   },
 ]
 
-// Reusable mobile single-column stack
-const MobileStack = ({ images, contain = false }) => {
-  const [active, setActive] = useState(null)
+// Lightbox modal — focuses a single image with an X in the corner
+const Lightbox = ({ src, onClose }) => {
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    setShow(true)
+    const onKey = (e) => { if (e.key === "Escape") onClose() }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [onClose])
 
   return (
-    <div className="flex flex-col sm:hidden gap-3">
-      {images.map((src, i) => (
-        <div
-          key={i}
-          onClick={() => setActive(active === i ? null : i)}
-          className="relative rounded-xl overflow-hidden bg-gray-200 w-full cursor-pointer"
-          style={{
-            height: active === i ? "260px" : MOBILE_IMG_HEIGHT,
-            transform: active === i ? "translateY(-4px)" : "translateY(0)",
-            opacity: active !== null && active !== i ? 0.7 : 1,
-            transition: "all 0.4s cubic-bezier(0.22,1,0.36,1)",
-          }}
-        >
-          <img
-            src={src}
-            alt=""
-            className={`absolute inset-0 w-full h-full ${
-              contain ? "object-contain" : "object-cover"
-            }`}
-            style={{
-              transform: active === i ? "scale(1.05)" : "scale(1)",
-              transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1)",
-            }}
-          />
-        </div>
-      ))}
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 transition-opacity duration-300"
+      style={{ opacity: show ? 1 : 0 }}
+    >
+      <button
+        onClick={onClose}
+        aria-label="Close"
+        className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-[#313131] text-2xl leading-none shadow-md transition"
+      >
+        ×
+      </button>
+      <img
+        src={src}
+        alt=""
+        onClick={(e) => e.stopPropagation()}
+        className="max-w-[92vw] max-h-[88vh] object-contain rounded-xl shadow-2xl"
+        style={{
+          transform: show ? "scale(1)" : "scale(0.96)",
+          transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)",
+        }}
+      />
     </div>
   )
 }
 
-const ThreeColLayout = ({ images }) => {
+// Reusable mobile single-column stack
+const MobileStack = ({ images, onImageClick, contain = false }) => (
+  <div className="flex flex-col sm:hidden gap-3">
+    {images.map((src, i) => (
+      <div
+        key={i}
+        onClick={() => onImageClick(src)}
+        className="relative rounded-xl overflow-hidden bg-gray-200 w-full cursor-pointer"
+        style={{ height: MOBILE_IMG_HEIGHT }}
+      >
+        <img
+          src={src}
+          alt=""
+          className={`absolute inset-0 w-full h-full ${contain ? "object-contain" : "object-cover"}`}
+        />
+      </div>
+    ))}
+  </div>
+)
+
+const ThreeColLayout = ({ images, onImageClick }) => {
   const [hovered, setHovered] = useState(null)
 
   const cell = (id, src) => (
@@ -77,12 +104,13 @@ const ThreeColLayout = ({ images }) => {
       key={id}
       className="relative rounded-xl overflow-hidden cursor-pointer"
       style={{
-        flex: hovered === id ? 1.3 : hovered !== null ? 0.85 : 1,
+        flex: hovered === id ? EXPAND : hovered !== null ? SHRINK : 1,
         transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
         minWidth: 0, minHeight: 0, height: "100%",
       }}
       onMouseEnter={() => setHovered(id)}
       onMouseLeave={() => setHovered(null)}
+      onClick={() => onImageClick(src)}
     >
       <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
     </div>
@@ -90,23 +118,23 @@ const ThreeColLayout = ({ images }) => {
 
   return (
     <>
-      <MobileStack images={images} />
+      <MobileStack images={images} onImageClick={onImageClick} />
 
       {/* Tablet */}
       <div className="hidden sm:flex md:hidden flex-col gap-3">
         <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
-          <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+          <div onClick={() => onImageClick(images[0])} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
             <img src={images[0]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
-          <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+          <div onClick={() => onImageClick(images[3])} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
             <img src={images[3]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
         <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
-          <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+          <div onClick={() => onImageClick(images[1])} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
             <img src={images[1]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
-          <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+          <div onClick={() => onImageClick(images[2])} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
             <img src={images[2]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
@@ -118,7 +146,7 @@ const ThreeColLayout = ({ images }) => {
         <div
           className="flex flex-col gap-3"
           style={{
-            flex: hovered === "c2t" || hovered === "c2b" ? 1.3 : hovered !== null ? 0.85 : 1,
+            flex: hovered === "c2t" || hovered === "c2b" ? EXPAND : hovered !== null ? SHRINK : 1,
             transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
             minWidth: 0, height: "100%",
           }}
@@ -132,26 +160,27 @@ const ThreeColLayout = ({ images }) => {
   )
 }
 
-const TwoColLayout = ({ images }) => {
+const TwoColLayout = ({ images, onImageClick }) => {
   const [hovered, setHovered] = useState(null)
 
   return (
     <>
-      <MobileStack images={images} contain />
+      <MobileStack images={images} onImageClick={onImageClick} contain />
 
       {/* Tablet */}
       <div className="hidden sm:flex md:hidden gap-3" style={{ height: '420px' }}>
         {images.map((src, i) => (
           <div
             key={i}
-            className="relative rounded-xl overflow-hidden  cursor-pointer"
+            className="relative rounded-xl overflow-hidden cursor-pointer"
             style={{
-              flex: hovered === i ? 1.3 : hovered !== null ? 0.85 : 1,
+              flex: hovered === i ? EXPAND : hovered !== null ? SHRINK : 1,
               transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
               minWidth: 0,
             }}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
+            onClick={() => onImageClick(src)}
           >
             <img src={src} alt="" className="absolute inset-0 w-full h-full object-contain" />
           </div>
@@ -168,20 +197,21 @@ const TwoColLayout = ({ images }) => {
               key={i}
               className="relative rounded-xl overflow-hidden cursor-pointer"
               style={{
-                flex: isHovered ? 1.4 : hovered !== null ? 0.8 : 1,
+                flex: isHovered ? 1.2 : hovered !== null ? SHRINK : 1,
                 transition: "flex 0.45s cubic-bezier(0.4,0,0.2,1)",
                 minWidth: 0,
                 height: "100%",
               }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
+              onClick={() => onImageClick(src)}
             >
               <img
                 src={src}
                 alt=""
-                className="absolute inset-0 w-full h-full  object-contain"
+                className="absolute inset-0 w-full h-full object-contain"
                 style={{
-                  transform: isHovered ? "scale(1.03)" : "scale(1)",
+                  transform: isHovered ? "scale(1.02)" : "scale(1)",
                   transition: "transform 0.45s cubic-bezier(0.4,0,0.2,1)",
                 }}
               />
@@ -193,7 +223,7 @@ const TwoColLayout = ({ images }) => {
   )
 }
 
-const ThreeColStackedLayout = ({ images }) => {
+const ThreeColStackedLayout = ({ images, onImageClick }) => {
   const [hovered, setHovered] = useState(null)
 
   const cell = (id, src) => (
@@ -201,12 +231,13 @@ const ThreeColStackedLayout = ({ images }) => {
       key={id}
       className="relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer"
       style={{
-        flex: hovered === id ? 1.3 : hovered !== null ? 0.85 : 1,
+        flex: hovered === id ? EXPAND : hovered !== null ? SHRINK : 1,
         transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
         minWidth: 0, minHeight: 0, height: "100%",
       }}
       onMouseEnter={() => setHovered(id)}
       onMouseLeave={() => setHovered(null)}
+      onClick={() => onImageClick(src)}
     >
       <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
     </div>
@@ -214,23 +245,23 @@ const ThreeColStackedLayout = ({ images }) => {
 
   return (
     <>
-      <MobileStack images={images} />
+      <MobileStack images={images} onImageClick={onImageClick} />
 
       {/* Tablet */}
       <div className="hidden sm:flex md:hidden flex-col gap-3">
         <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
-          <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+          <div onClick={() => onImageClick(images[0])} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
             <img src={images[0]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
-          <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+          <div onClick={() => onImageClick(images[1])} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
             <img src={images[1]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
         <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
-          <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+          <div onClick={() => onImageClick(images[3])} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
             <img src={images[3]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
-          <div className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+          <div onClick={() => onImageClick(images[4])} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
             <img src={images[4]} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
@@ -242,7 +273,7 @@ const ThreeColStackedLayout = ({ images }) => {
         <div
           className="flex flex-col gap-3"
           style={{
-            flex: hovered === "sc2t" || hovered === "sc2b" ? 1.3 : hovered !== null ? 0.85 : 1,
+            flex: hovered === "sc2t" || hovered === "sc2b" ? EXPAND : hovered !== null ? SHRINK : 1,
             transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
             minWidth: 0, height: "100%",
           }}
@@ -253,7 +284,7 @@ const ThreeColStackedLayout = ({ images }) => {
         <div
           className="flex flex-col gap-3"
           style={{
-            flex: hovered === "sc3t" || hovered === "sc3b" ? 1.3 : hovered !== null ? 0.85 : 1,
+            flex: hovered === "sc3t" || hovered === "sc3b" ? EXPAND : hovered !== null ? SHRINK : 1,
             transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
             minWidth: 0, height: "100%",
           }}
@@ -266,7 +297,7 @@ const ThreeColStackedLayout = ({ images }) => {
   )
 }
 
-const FourColLayout = ({ images }) => {
+const FourColLayout = ({ images, onImageClick }) => {
   const [hovered, setHovered] = useState(null)
 
   return (
@@ -275,14 +306,14 @@ const FourColLayout = ({ images }) => {
       <div className="flex flex-col sm:hidden gap-3">
         <div className="flex gap-3" style={{ height: MOBILE_IMG_HEIGHT }}>
           {images.slice(0, 2).map((src, i) => (
-            <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+            <div key={i} onClick={() => onImageClick(src)} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
               <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           ))}
         </div>
         <div className="flex gap-3" style={{ height: MOBILE_IMG_HEIGHT }}>
           {images.slice(2, 4).map((src, i) => (
-            <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+            <div key={i} onClick={() => onImageClick(src)} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
               <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           ))}
@@ -293,14 +324,14 @@ const FourColLayout = ({ images }) => {
       <div className="hidden sm:flex md:hidden flex-col gap-3">
         <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
           {images.slice(0, 2).map((src, i) => (
-            <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+            <div key={i} onClick={() => onImageClick(src)} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
               <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           ))}
         </div>
         <div className="flex gap-3" style={{ height: TABLET_ROW_HEIGHT }}>
           {images.slice(2, 4).map((src, i) => (
-            <div key={i} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1">
+            <div key={i} onClick={() => onImageClick(src)} className="relative rounded-xl overflow-hidden bg-gray-200 flex-1 cursor-pointer">
               <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           ))}
@@ -314,12 +345,13 @@ const FourColLayout = ({ images }) => {
             key={i}
             className="relative rounded-xl overflow-hidden bg-gray-200 cursor-pointer"
             style={{
-              flex: hovered === i ? 1.3 : hovered !== null ? 0.85 : 1,
+              flex: hovered === i ? EXPAND : hovered !== null ? SHRINK : 1,
               transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
               minWidth: 0, height: "100%",
             }}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
+            onClick={() => onImageClick(src)}
           >
             <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
@@ -333,6 +365,7 @@ const Illustrations = () => {
   const [current, setCurrent] = useState(0)
   const [animating, setAnimating] = useState(false)
   const [dir, setDir] = useState(null)
+  const [modalImg, setModalImg] = useState(null)
 
   const goTo = (next) => {
     if (animating) return
@@ -349,7 +382,7 @@ const Illustrations = () => {
 
   return (
     <div className="absolute inset-0 overflow-y-auto">
-      <div className="px-4 md:pl-80 md:pr-16 py-6 w-full min-h-full flex flex-col gap-1">
+      <div className="px-4 md:pl-80 md:pr-16 pt-6 md:pt-8 pb-28 md:pb-36 w-full min-h-full flex flex-col gap-1">
 
         <div className="flex items-center gap-2">
           <button
@@ -368,10 +401,10 @@ const Illustrations = () => {
               transition: "opacity 0.3s ease, transform 0.3s ease",
             }}
           >
-            {collage.layout === "three-col" && <ThreeColLayout images={collage.images} />}
-            {collage.layout === "two-col" && <TwoColLayout images={collage.images} />}
-            {collage.layout === "three-col-stacked" && <ThreeColStackedLayout images={collage.images} />}
-            {collage.layout === "four-col" && <FourColLayout images={collage.images} />}
+            {collage.layout === "three-col" && <ThreeColLayout images={collage.images} onImageClick={setModalImg} />}
+            {collage.layout === "two-col" && <TwoColLayout images={collage.images} onImageClick={setModalImg} />}
+            {collage.layout === "three-col-stacked" && <ThreeColStackedLayout images={collage.images} onImageClick={setModalImg} />}
+            {collage.layout === "four-col" && <FourColLayout images={collage.images} onImageClick={setModalImg} />}
           </div>
 
           <button
@@ -393,14 +426,20 @@ const Illustrations = () => {
           ))}
         </div>
 
-        <p
-          className="font-extrabold text-[#313131] text-right mt-1 select-none"
-          style={{ fontSize: "clamp(2rem, 5vw, 5rem)" }}
-        >
-          illustrations.
-        </p>
-
       </div>
+
+      <p
+        className="fixed z-50 pointer-events-none select-none font-extrabold text-[#313131] leading-none"
+        style={{
+          fontSize: "clamp(1.6rem, 5vw, 5rem)",
+          bottom: "clamp(0.6rem, 2.5vw, 2rem)",
+          right: "clamp(0.6rem, 2.5vw, 3rem)",
+        }}
+      >
+        illustrations.
+      </p>
+
+      {modalImg && <Lightbox src={modalImg} onClose={() => setModalImg(null)} />}
     </div>
   )
 }

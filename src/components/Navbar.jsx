@@ -23,18 +23,17 @@ const Navbar = ({ onNavigate }) => {
 
   return (
     <div className="w-full sticky top-0 bg-white z-10">
-      <div className="flex items-center justify-between w-full px-4">
-        <div className="flex items-center gap-2">
-          <div className="md:hidden">
-            <Squash toggled={isOpen} toggle={setIsOpen} size={24} />
-          </div>
-          <img
-            src={imoLogo}
-            alt="Logo"
-            className="h-20 md:h-28 w-auto cursor-pointer"
-            onClick={goHome}
-          />
+      <div className="relative flex items-center w-full px-4">
+        <div className="md:hidden absolute left-4 top-1/2 -translate-y-1/2">
+          <Squash toggled={isOpen} toggle={setIsOpen} size={24} />
         </div>
+
+        <img
+          src={imoLogo}
+          alt="Logo"
+          className="h-20 md:h-28 w-auto cursor-pointer mx-auto md:mx-0 md:translate-x-10"
+          onClick={goHome}
+        />
 
         <div className="hidden md:flex items-center justify-center gap-8 lg:gap-50 w-full">
           {NavData.map((item, index) => (

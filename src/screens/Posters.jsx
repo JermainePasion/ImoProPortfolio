@@ -19,7 +19,7 @@ const Posters = () => {
       <div className="px-8 md:pl-80 md:pr-16 py-8 w-full h-full flex flex-col">
 
         <button
-          onClick={() => navigate('/', { state: { page: 2 } })}
+          onClick={() => navigate('/', { state: { page: 4 } })}
           className="text-sm text-gray-500 italic mb-4 text-left hover:text-gray-800 transition-colors"
         >
           ← back

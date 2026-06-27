@@ -11,7 +11,7 @@ const Work = () => {
 
   return (
     <div className="absolute inset-0 overflow-y-auto">
-      <div className="px-4 md:pl-80 md:pr-16 py-6 w-full min-h-full flex flex-col gap-4">
+      <div className="px-4 md:pl-80 md:pr-16 pt-6 md:pt-8 pb-28 md:pb-36 w-full min-h-full flex flex-col gap-4">
 
         {/* Mobile — single column */}
         <div className="flex flex-col sm:hidden gap-4">
@@ -52,7 +52,7 @@ const Work = () => {
         </div>
 
         {/* Desktop — original 3-column */}
-        <div className="hidden md:flex gap-3" style={{ minHeight: '55vh', maxHeight: '55vh' }}>
+        <div className="hidden md:flex gap-3 flex-1" style={{ minHeight: '60vh', maxHeight: '60vh' }}>
           <div
             className="relative rounded-xl overflow-hidden bg-white"
             style={{
@@ -108,14 +108,18 @@ const Work = () => {
           </div>
         </div>
 
-        <p
-          className="font-extrabold text-[#313131] text-right select-none"
-          style={{ fontSize: 'clamp(2.5rem, 8vw, 7rem)' }}
-        >
-          work.
-        </p>
-
       </div>
+
+      <p
+        className="fixed z-50 pointer-events-none select-none font-extrabold text-[#313131] leading-none whitespace-nowrap"
+        style={{
+          fontSize: "clamp(1.6rem, 5vw, 5rem)",
+          bottom: "clamp(0.6rem, 2.5vw, 2rem)",
+          right: "clamp(0.6rem, 2.5vw, 3rem)",
+        }}
+      >
+        school works.
+      </p>
     </div>
   )
 }

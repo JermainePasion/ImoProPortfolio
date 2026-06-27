@@ -15,15 +15,15 @@ const Graphics = () => {
 
   return (
     <div className="absolute inset-0 overflow-y-auto">
-      <div className="px-4 md:pl-80 md:pr-16 py-6 md:py-8 w-full min-h-full flex flex-col">
+      <div className="px-4 md:pl-80 md:pr-16 pt-6 md:pt-8 pb-28 md:pb-36 w-full min-h-full flex flex-col">
 
-        <div className="flex flex-col md:flex-row gap-3 w-full" style={{ minHeight: '55vh' }}>
+        <div className="flex flex-col md:flex-row gap-3 w-full flex-1" style={{ minHeight: '64vh' }}>
 
           <div
             className="relative rounded-xl overflow-hidden bg-white cursor-pointer"
             style={{
-              flex: hovered === "left" ? "1.6" : hovered !== null ? "0.6" : "0.7",
-              transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
+              flex: hovered === "left" ? "1" : hovered !== null ? "0.85" : "0.75",
+              transition: "flex 0.45s cubic-bezier(0.4,0,0.2,1)",
               minWidth: "50px",
               minHeight: '200px',
             }}
@@ -32,10 +32,10 @@ const Graphics = () => {
             onMouseLeave={() => setHovered(null)}
           >
             <img src={Sombr} alt="poster" className="absolute inset-0 w-full h-full object-cover" />
-            <p className="absolute bottom-2 left-3 text-xs text-black italic">posters</p>
+            <p className="absolute bottom-2 left-3 text-xs text-white italic px-2 py-0.5 rounded bg-black/40">posters</p>
           </div>
 
-          <div className="flex flex-col gap-3" style={{ flex: hovered === 'left' ? '0.8' : '1', transition: 'flex 0.4s cubic-bezier(0.4,0,0.2,1)' }}>
+          <div className="flex flex-col gap-3" style={{ flex: hovered === 'left' ? '0.9' : '1', transition: 'flex 0.45s cubic-bezier(0.4,0,0.2,1)' }}>
 
             {/* Row 1 — 2 small images */}
             <div className="flex gap-3" style={{ flex: 1, minHeight: '120px' }}>
@@ -44,14 +44,14 @@ const Graphics = () => {
                   key={id}
                   className="relative rounded-xl overflow-hidden bg-gray-200"
                   style={{
-                    flex: hovered === id ? '1.5' : (hovered && hovered !== 'left' && hovered !== id) ? '0.6' : '1',
-                    transition: 'flex 0.4s cubic-bezier(0.4,0,0.2,1)',
+                    flex: hovered === id ? '1.3' : (hovered && hovered !== 'left' && hovered !== id) ? '0.8' : '1',
+                    transition: 'flex 0.45s cubic-bezier(0.4,0,0.2,1)',
                   }}
                   onMouseEnter={() => setHovered(id)}
                   onMouseLeave={() => setHovered(null)}
                 >
                   <img src={src} alt={id} className="absolute inset-0 w-full h-full object-cover" />
-                  <p className="absolute bottom-2 left-3 text-xs text-black italic">{description}</p>
+                  <p className="absolute bottom-2 left-3 text-xs text-white italic px-2 py-0.5 rounded bg-black/40">{description}</p>
                 </div>
               ))}
             </div>
@@ -62,14 +62,14 @@ const Graphics = () => {
               <div
                 className="relative rounded-xl overflow-hidden bg-gray-200"
                 style={{
-                  flex: hovered === "tall" ? "1.5" : hovered && hovered !== "left" && hovered !== "tall" ? "0.6" : "1",
-                  transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
+                  flex: hovered === "tall" ? "1.3" : hovered && hovered !== "left" && hovered !== "tall" ? "0.8" : "1",
+                  transition: "flex 0.45s cubic-bezier(0.4,0,0.2,1)",
                 }}
                 onMouseEnter={() => setHovered("tall")}
                 onMouseLeave={() => setHovered(null)}
               >
                 <img src={Bea} alt="poster" className="absolute inset-0 w-full h-full object-cover" />
-                <p className="absolute bottom-2 left-3 text-xs text-black italic">invitations</p>
+                <p className="absolute bottom-2 left-3 text-xs text-white italic px-2 py-0.5 rounded bg-black/40">invitations</p>
               </div>
 
               {/* Middle stack */}
@@ -82,8 +82,8 @@ const Graphics = () => {
                     key={item.id}
                     className="relative rounded-xl overflow-hidden bg-white cursor-pointer"
                     style={{
-                      flex: hovered === item.id ? 2 : 1,
-                      transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
+                      flex: hovered === item.id ? 1.5 : 1,
+                      transition: "flex 0.45s cubic-bezier(0.4,0,0.2,1)",
                       minHeight: 0,
                     }}
                     onMouseEnter={() => setHovered(item.id)}
@@ -91,7 +91,7 @@ const Graphics = () => {
                     onClick={() => navigate(item.link)}
                   >
                     <img src={item.img} alt="poster" className="absolute inset-0 w-full h-full object-cover" />
-                    <p className="absolute bottom-2 left-3 text-xs text-black italic">{item.description}</p>
+                    <p className="absolute bottom-2 left-3 text-xs text-white italic px-2 py-0.5 rounded bg-black/40">{item.description}</p>
                   </div>
                 ))}
               </div>
@@ -105,8 +105,8 @@ const Graphics = () => {
                     key={item.id}
                     className="relative rounded-xl overflow-hidden bg-gray-200"
                     style={{
-                      flex: hovered === item.id ? 2 : 1,
-                      transition: "flex 0.4s cubic-bezier(0.4,0,0.2,1)",
+                      flex: hovered === item.id ? 1.5 : 1,
+                      transition: "flex 0.45s cubic-bezier(0.4,0,0.2,1)",
                       minHeight: 0,
                     }}
                     onMouseEnter={() => setHovered(item.id)}
@@ -114,7 +114,7 @@ const Graphics = () => {
                     onMouseLeave={() => setHovered(null)}
                   >
                     <img src={item.img} alt="logo" className="absolute inset-0 w-full h-full object-cover" />
-                    <p className="absolute bottom-2 left-3 text-xs text-black italic">logos</p>
+                    <p className="absolute bottom-2 left-3 text-xs text-white italic px-2 py-0.5 rounded bg-black/40">logos</p>
                   </div>
                 ))}
               </div>
@@ -125,13 +125,18 @@ const Graphics = () => {
 
         </div>
 
-      <p
-          className="font-extrabold text-[#313131] text-right mt-6 md:mt-4 select-none leading-none"
-          style={{ fontSize: "clamp(2rem, 5vw, 5.5rem)" }}
-        >
-          graphics.
-      </p>
       </div>
+
+      <p
+        className="fixed z-50 pointer-events-none select-none font-extrabold text-[#313131] leading-none"
+        style={{
+          fontSize: "clamp(1.6rem, 5vw, 5rem)",
+          bottom: "clamp(0.6rem, 2.5vw, 2rem)",
+          right: "clamp(0.6rem, 2.5vw, 3rem)",
+        }}
+      >
+        graphics.
+      </p>
     </div>
   )
 }
