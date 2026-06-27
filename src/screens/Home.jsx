@@ -39,24 +39,24 @@ const Home = ({ scrolledAway }) => {
           <section className="order-1 md:order-2 w-full px-4 md:px-0 flex flex-col items-center">
 
             <img
-              className="rounded-3xl w-full object-cover md:-ml-6"
+              className="rounded-3xl w-full lg:w-4/5 min-[1700px]:w-full object-cover md:-ml-25"
               src={landingPhoto}
             />
-            <div className="flex justify-center gap-5 md:gap-20 w-full mt-3">
+            <div className="flex justify-center gap-5 md:gap-12 lg:gap-20 w-full mt-3 md:-ml-25">
               <a href="https://www.facebook.com/emowwwwwwww" className="social-icon" target="_blank">
-                <LuFacebook size={30} />
+                <LuFacebook className="w-8 h-8 md:w-10 md:h-10 lg:w-8 lg:h-8" />
               </a>
               <a href="https://x.com/1mo6en" className="social-icon" target="_blank">
-                <FaSquareXTwitter size={30} />
+                <FaSquareXTwitter className="w-8 h-8 md:w-10 md:h-10 lg:w-8 lg:h-8" />
               </a>
               <a href="mailto:your@email.com" className="social-icon" target="_blank">
-                <MdOutlineEmail size={30} />
+                <MdOutlineEmail className="w-8 h-8 md:w-10 md:h-10 lg:w-8 lg:h-8" />
               </a>
               <a href="https://www.linkedin.com/in/imogen-dasha-ignacio/" className="social-icon" target="_blank">
-                <LuLinkedin size={30} />
+                <LuLinkedin className="w-8 h-8 md:w-10 md:h-10 lg:w-8 lg:h-8" />
               </a>
               <a href="https://www.instagram.com/1mo6en_n/" className="social-icon" target="_blank">
-                <SlSocialInstagram size={30} />
+                <SlSocialInstagram className="w-8 h-8 md:w-10 md:h-10 lg:w-8 lg:h-8" />
               </a>
             </div>
           </section>
