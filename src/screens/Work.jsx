@@ -118,7 +118,7 @@ const Work = () => {
           right: "clamp(0.6rem, 2.5vw, 3rem)",
         }}
       >
-        school works.
+        work.
       </p>
     </div>
   )
