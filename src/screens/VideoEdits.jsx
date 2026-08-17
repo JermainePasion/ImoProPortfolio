@@ -1,52 +1,100 @@
 import { useState } from "react"
 
-// Slide 1 — the three vertical videos.
-const videos = [
-  {
-    title: "Baby, This is Keke Palmer | PODCAST",
-    src: "https://www.youtube.com/embed/kWHu7mhnYpc?rel=0&modestbranding=1&playsinline=1",
-    roles: "Edited for Portfolio Purposes only",
-  },
-  {
-    title: "WE'RE EMC | SCHOOL REEL",
-    src: "https://www.youtube.com/embed/wnEjHB8iR6U?rel=0&modestbranding=1&playsinline=1",
-    roles: "",
-  },
-  {
-    title: "The Basement Yard | PODCAST",
-    src: "https://www.youtube.com/embed/T8hJE5Eg07k",
-    roles: "Edited for Portfolio Purposes only",
-  },
+const videoSlides = [
+  [
+    {
+      title: "World Cup Visa",
+      src: "https://www.instagram.com/reel/Daft9GyxL50/embed",
+      roles: "Client commission",
+    },
+    {
+      title: "Marriage Petitions",
+      src: "https://www.instagram.com/reel/DbIy1CPRRpz/embed",
+      roles: "Client commission",
+    },
+    {
+      title: "USCIS Policy Update",
+      src: "https://www.instagram.com/reel/DbcRbXWx7R6/embed",
+      roles: "Client commission",
+    },
+  ],
+
+  [
+    {
+      title: "Hard Work",
+      src: "https://www.instagram.com/reel/DZvBT1DRXcv/embed",
+      roles: "Client commission",
+    },
+    {
+      title: "Winning Isn't Luck",
+      src: "https://www.instagram.com/reel/DbgODX9B_AN/embed",
+      roles: "Client commission",
+    },
+  ],
+  [
+    {
+      title: "Baby, This is Keke Palmer",
+      src: "https://www.youtube.com/embed/kWHu7mhnYpc?rel=0&modestbranding=1&playsinline=1",
+      roles: "Edited for Portfolio Purposes only",
+    },
+    {
+      title: "We're EMC ",
+      src: "https://www.youtube.com/embed/wnEjHB8iR6U?rel=0&modestbranding=1&playsinline=1",
+      roles: "",
+    },
+    {
+      title: "The Basement Yard",
+      src: "https://www.youtube.com/embed/T8hJE5Eg07k",
+      roles: "Edited for Portfolio Purposes only",
+    },
+  ],
 ]
 
-// Slide 2 — the single featured video. Swap this src for any video.
 const featured = {
   title: "BAD IDEA | FAN MV",
   src: "https://www.youtube.com/embed/4zV5DQ8k8uU?rel=0&modestbranding=1&playsinline=1",
   roles: "",
 }
 
-const SLIDE_COUNT = 2
+const SLIDE_COUNT = videoSlides.length + 1
 
-const VideoCard = ({ video, aspect = "aspect-[9/16]", wrapClass = "" }) => (
-  <div className={`flex flex-col items-center ${wrapClass}`}>
-    <p className="text-xl md:text-2xl font-bold text-[#313131] mb-4 text-center min-h-[3.5rem] md:min-h-[4rem] flex items-end justify-center">
-      {video.title}
-    </p>
-    <div className={`relative w-full ${aspect} rounded-xl overflow-hidden shadow-md bg-black`}>
-      <iframe
-        className="absolute inset-0 w-full h-full border-0"
-        src={video.src}
-        title="video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      />
+const VideoCard = ({ video, aspect = "aspect-[9/16]", wrapClass = "" }) => {
+  const [loaded, setLoaded] = useState(false)
+
+  return (
+    <div className={`flex flex-col items-center ${wrapClass}`}>
+      <p className="text-xl md:text-xl font-bold text-[#313131] mb-4 text-center min-h-[3.5rem] md:min-h-[4rem] flex items-end justify-center">
+        {video.title}
+      </p>
+      <div className={`relative w-full ${aspect} rounded-xl overflow-hidden shadow-md bg-gray-100`}>
+        {/* Skeleton shown until the embed finishes loading */}
+        <div
+          className={`absolute inset-0 flex items-center justify-center bg-gray-100 transition-opacity duration-500 ${
+            loaded ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-gray-100 via-gray-200 to-gray-100" />
+          <div className="relative w-8 h-8 border-2 border-gray-300 border-t-[#313131] rounded-full animate-spin" />
+        </div>
+
+        <iframe
+          className={`absolute inset-0 w-full h-full border-0 transition-opacity duration-500 ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+          src={video.src}
+          title={video.title}
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+      <p className="text-left text-xs text-gray-500 pt-3 italic w-full">
+        {video.roles}
+      </p>
     </div>
-    <p className="text-left text-xs text-gray-500 pt-3 italic w-full">
-      {video.roles}
-    </p>
-  </div>
-)
+  )
+}
 
 const VideoEdits = () => {
   const [current, setCurrent] = useState(0)
@@ -78,24 +126,33 @@ const VideoEdits = () => {
           </button>
 
           <div
-            className="flex-1 flex items-center justify-center"
+            className="flex-1"
             style={{
               opacity: animating ? 0 : 1,
               transform: animating ? `translateX(${dir === "left" ? "-20px" : "20px"})` : "translateX(0)",
               transition: "opacity 0.3s ease, transform 0.3s ease",
             }}
           >
-            {current === 0 ? (
-              <div className="flex flex-col lg:flex-row md:items-start md:justify-center gap-10 w-full items-center">
-                <VideoCard video={videos[0]} wrapClass="w-full max-w-[18rem] md:flex-1" />
-                <VideoCard video={videos[1]} wrapClass="w-full max-w-[18rem] md:flex-1" />
-                <VideoCard video={videos[2]} wrapClass="w-full max-w-[18rem] md:flex-1" />
+            {/* All slides stay mounted so iframes load once and never reload
+                when you navigate back and forth. Inactive slides are hidden. */}
+            {videoSlides.map((slide, slideIndex) => (
+              <div
+                key={slideIndex}
+                className={
+                  slideIndex === current
+                    ? "flex flex-col lg:flex-row md:items-start md:justify-center gap-10 w-full items-center"
+                    : "hidden"
+                }
+              >
+                {slide.map((video, i) => (
+                  <VideoCard key={i} video={video} wrapClass="w-full max-w-[18rem] md:flex-1" />
+                ))}
               </div>
-            ) : (
-              <div className="flex justify-center w-full">
-                <VideoCard video={featured} aspect="aspect-video" wrapClass="w-full max-w-2xl" />
-              </div>
-            )}
+            ))}
+
+            <div className={current === videoSlides.length ? "flex justify-center w-full" : "hidden"}>
+              <VideoCard video={featured} aspect="aspect-video" wrapClass="w-full max-w-2xl" />
+            </div>
           </div>
 
           <button
