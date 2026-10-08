@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { videoSlides, featured } from "../data/Videoeditsdata"
+import { videoSlides, featured } from "../data/VideoEditsData"
 
 const SLIDE_COUNT = videoSlides.length + 1
 
